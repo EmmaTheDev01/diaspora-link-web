@@ -120,7 +120,8 @@ export default function LogisticsPage() {
                         <span className="bg-black text-white font-bold px-2.5 py-1 text-xs rounded uppercase">{t.status}</span>
                       </td>
                     </tr>
-                  ))}
+                  ))
+                )}
                 </tbody>
               </table>
             </div>
