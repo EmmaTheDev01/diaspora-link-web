@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   keywords: ['Magic Link', 'Diaspora Link', 'Rwanda E-Commerce', 'Gishwati Tea', 'Kivu Coffee', 'Kigali Toronto Freight', 'RwandAir Luggage', 'Escrow Vault'],
   icons: {
     icon: '/icon.png',
+    shortcut: '/icon.png',
     apple: '/icon.png',
   },
 };

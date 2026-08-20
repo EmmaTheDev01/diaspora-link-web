@@ -1,0 +1,26 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/vendor-canada/layout,_N_T_/vendor-canada/page,_N_T_/vendor-canada"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/vendor-canada/__PAGE__"
+  ],
+  "prefetchHints": {
+    "hints": 64,
+    "slots": {
+      "children": {
+        "hints": 96,
+        "slots": {
+          "children": {
+            "hints": 160,
+            "slots": null
+          }
+        }
+      }
+    }
+  }
+}
