@@ -6,6 +6,7 @@ import { dbService } from '@/services/db';
 import { Product } from '@/types';
 import { useCartStore } from '@/store/useCartStore';
 import { useAuthStore } from '@/store/useAuthStore';
+import { ProductCardSkeleton } from '@/components/common/Skeleton';
 import {
   Search,
   Heart,
@@ -27,6 +28,7 @@ function ShopCatalogContent() {
   const { currency } = useAuthStore();
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
   const [wishlistIds, setWishlistIds] = useState<string[]>([]);
 
   // Filter States
@@ -40,8 +42,10 @@ function ShopCatalogContent() {
 
   useEffect(() => {
     async function loadAllProducts() {
+      setLoading(true);
       const data = await dbService.getProducts();
       setProducts(data);
+      setLoading(false);
     }
     loadAllProducts();
   }, []);
@@ -386,7 +390,13 @@ function ShopCatalogContent() {
         </div>
 
         {/* PRODUCTS GRID: 4 CARDS PER ROW WITHOUT ADD TO CART BUTTON */}
-        {sortedProducts.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <ProductCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : sortedProducts.length === 0 ? (
           <div className="bg-gray-50 p-12 text-center rounded-3xl space-y-4">
             <ShoppingBag size={48} className="text-gray-400 mx-auto" />
             <h3 className="font-bold text-lg text-black font-retro-heading">No Products Match Filters</h3>
@@ -417,6 +427,11 @@ function ShopCatalogContent() {
                         alt={prod.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                       />
+
+                      {/* In Stock Badge */}
+                      <span className="absolute top-3 left-3 z-10 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> In Stock
+                      </span>
 
                       {/* Wishlist Heart Button */}
                       <button

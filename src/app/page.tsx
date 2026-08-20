@@ -10,11 +10,14 @@ import { Product } from '@/types';
 export default function HomePage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       const data = await dbService.getProducts();
       setProducts(data);
+      setLoading(false);
     }
     loadData();
   }, []);
@@ -38,6 +41,7 @@ export default function HomePage() {
         products={products}
         selectedCategory={selectedCategory}
         onSelectCategory={(cat) => setSelectedCategory(cat)}
+        loading={loading}
       />
     </main>
   );

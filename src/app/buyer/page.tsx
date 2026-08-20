@@ -24,6 +24,7 @@ import {
   Check,
 } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
+import { StatCardSkeleton } from '@/components/common/Skeleton';
 import toast from 'react-hot-toast';
 
 export default function BuyerDashboardPage() {
@@ -33,6 +34,7 @@ export default function BuyerDashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
   const [orders, setOrders] = useState<Order[]>([]);
   const [escrowVault, setEscrowVault] = useState<EscrowAccount[]>([]);
+  const [loading, setLoading] = useState(true);
   const [escrowPin, setEscrowPin] = useState('');
   const [releasingOrderId, setReleasingOrderId] = useState<string | null>(null);
 
@@ -74,10 +76,12 @@ export default function BuyerDashboardPage() {
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       const fetchedOrders = await dbService.getOrders();
       const fetchedEscrow = await dbService.getEscrowVault();
       setOrders(fetchedOrders);
       setEscrowVault(fetchedEscrow);
+      setLoading(false);
     }
     loadData();
   }, []);
@@ -148,41 +152,47 @@ export default function BuyerDashboardPage() {
         <div className="space-y-8">
           {/* Top Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Total Orders</span>
-                <ShoppingBag size={20} className="text-black" />
-              </div>
-              <div className="text-4xl font-black text-black font-retro-heading">{orders.length}</div>
-              <span className="text-xs text-gray-500 font-medium">Cross-border parcels</span>
-            </div>
+            {loading ? (
+              Array.from({ length: 4 }).map((_, i) => <StatCardSkeleton key={i} />)
+            ) : (
+              <>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Total Orders</span>
+                    <ShoppingBag size={20} className="text-black" />
+                  </div>
+                  <div className="text-4xl font-black text-black font-retro-heading">{orders.length}</div>
+                  <span className="text-xs text-gray-500 font-medium">Cross-border parcels</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Active Shipments</span>
-                <Clock size={20} className="text-black" />
-              </div>
-              <div className="text-4xl font-black text-black font-retro-heading">{activeOrdersCount}</div>
-              <span className="text-xs text-gray-500 font-medium">In transit on flight WB302</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Active Shipments</span>
+                    <Clock size={20} className="text-black" />
+                  </div>
+                  <div className="text-4xl font-black text-black font-retro-heading">{activeOrdersCount}</div>
+                  <span className="text-xs text-gray-500 font-medium">In transit on flight WB302</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Locked in Escrow</span>
-                <Lock size={20} className="text-black" />
-              </div>
-              <div className="text-3xl font-black text-black font-retro-heading">${lockedEscrowCad.toFixed(2)} CAD</div>
-              <span className="text-xs text-gray-500 font-medium">Safe 256-bit vault protection</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Locked in Escrow</span>
+                    <Lock size={20} className="text-black" />
+                  </div>
+                  <div className="text-3xl font-black text-black font-retro-heading">${lockedEscrowCad.toFixed(2)} CAD</div>
+                  <span className="text-xs text-gray-500 font-medium">Safe 256-bit vault protection</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Total Trade Volume</span>
-                <CreditCard size={20} className="text-black" />
-              </div>
-              <div className="text-3xl font-black text-black font-retro-heading">${totalSpentCad.toFixed(2)} CAD</div>
-              <span className="text-xs text-gray-500 font-medium">KGL ✈ YYZ corridor</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Total Trade Volume</span>
+                    <CreditCard size={20} className="text-black" />
+                  </div>
+                  <div className="text-3xl font-black text-black font-retro-heading">${totalSpentCad.toFixed(2)} CAD</div>
+                  <span className="text-xs text-gray-500 font-medium">KGL ✈ YYZ corridor</span>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Active Orders Quick Summary Table */}

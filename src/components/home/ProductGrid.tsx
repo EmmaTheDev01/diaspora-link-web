@@ -6,13 +6,16 @@ import { ShoppingBag, Heart, ChevronRight, Lock, ShieldCheck, Plane } from 'luci
 import { useCartStore } from '../../store/useCartStore';
 import { useAuthStore } from '../../store/useAuthStore';
 
+import { ProductCardSkeleton } from '../common/Skeleton';
+
 interface ProductGridProps {
   products: Product[];
   selectedCategory?: string;
   onSelectCategory?: (cat: string) => void;
+  loading?: boolean;
 }
 
-export function ProductGrid({ products, selectedCategory, onSelectCategory }: ProductGridProps) {
+export function ProductGrid({ products, selectedCategory, onSelectCategory, loading }: ProductGridProps) {
   const { addItem } = useCartStore();
   const { currency } = useAuthStore();
   const [corridorFilter, setCorridorFilter] = useState<'all' | 'KGL_YYZ' | 'YYZ_KGL'>('all');
@@ -24,11 +27,23 @@ export function ProductGrid({ products, selectedCategory, onSelectCategory }: Pr
     setWishlistIds((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
   };
 
-  const filteredProducts = products.filter((p) => {
+  if (loading) {
+    return (
+      <div className="space-y-12 py-10 px-4 lg:px-8 max-w-7xl mx-auto font-sans">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  const filteredProducts = products ? products.filter((p) => {
     if (selectedCategory && p.category !== selectedCategory) return false;
     if (corridorFilter !== 'all' && p.target_corridor !== corridorFilter) return false;
     return true;
-  });
+  }) : [];
 
   if (!products || products.length === 0) {
     return (
@@ -99,6 +114,11 @@ export function ProductGrid({ products, selectedCategory, onSelectCategory }: Pr
                     alt={prod.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
+
+                  {/* In Stock Badge */}
+                  <span className="absolute top-3 left-3 z-10 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> In Stock
+                  </span>
 
                   <button
                     onClick={(e) => toggleWishlist(prod.id, e)}

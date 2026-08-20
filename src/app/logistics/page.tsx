@@ -7,10 +7,13 @@ import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 import { CourierCapacityChart } from '@/components/charts/CourierCapacityChart';
 import { Plane, Plus, Luggage, X, ShieldCheck, User, Settings, CreditCard } from 'lucide-react';
 
+import { StatCardSkeleton } from '@/components/common/Skeleton';
+
 export default function LogisticsPage() {
   const { user, currency } = useAuthStore();
   const [activeTab, setActiveTab] = useState('trips');
   const [trips, setTrips] = useState<CarrierTrip[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isTripModalOpen, setIsTripModalOpen] = useState(false);
 
   const [flightNumber, setFlightNumber] = useState('WB 302');
@@ -21,8 +24,10 @@ export default function LogisticsPage() {
 
   useEffect(() => {
     async function loadTrips() {
+      setLoading(true);
       const data = await dbService.getCarrierTrips();
       setTrips(data);
+      setLoading(false);
     }
     loadTrips();
   }, []);
@@ -101,7 +106,10 @@ export default function LogisticsPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {trips.map((t) => (
+                  {loading ? (
+                    Array.from({ length: 3 }).map((_, i) => <TableRowSkeleton key={i} cols={6} />)
+                  ) : (
+                    trips.map((t) => (
                     <tr key={t.id} className="hover:bg-gray-50 transition">
                       <td className="p-4 font-mono font-bold text-black">{t.flight_number} ({t.airline})</td>
                       <td className="p-4 font-bold">{t.departure_date}</td>

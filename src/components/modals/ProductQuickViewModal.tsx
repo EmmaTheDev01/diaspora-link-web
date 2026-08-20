@@ -42,11 +42,9 @@ export function ProductQuickViewModal({ product, onClose }: ModalProps) {
                 alt={product.title}
                 className="w-full h-full object-cover"
               />
-              {product.rdb_certified && (
-                <span className="absolute top-3 left-3 bg-black text-white text-[10px] font-black px-3 py-1 uppercase tracking-widest flex items-center gap-1 shadow">
-                  <ShieldCheck size={14} /> RDB Certified
-                </span>
-              )}
+              <span className="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1.5 z-10">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> In Stock
+              </span>
             </div>
 
             {product.images.length > 1 && (

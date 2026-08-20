@@ -6,6 +6,7 @@ import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 import { AdminPlatformChart } from '@/components/charts/AdminPlatformChart';
 import { UserDevice, ActivityLog, EscrowAccount, Order } from '@/types';
 import { ShieldCheck, Users, Database, Lock, Smartphone, RefreshCw, ShoppingBag, FileText } from 'lucide-react';
+import { StatCardSkeleton, TableRowSkeleton } from '@/components/common/Skeleton';
 import toast from 'react-hot-toast';
 
 export default function AdminConsolePage() {
@@ -18,8 +19,10 @@ export default function AdminConsolePage() {
   const [devices, setDevices] = useState<UserDevice[]>([]);
   const [activityLogs, setActivityLogs] = useState<ActivityLog[]>([]);
   const [escrowBalance, setEscrowBalance] = useState({ total_cad: 48500, total_rwf: 59800000 });
+  const [loading, setLoading] = useState(true);
 
   const loadAdminData = async () => {
+    setLoading(true);
     const approvals = await dbService.getPendingApprovals();
     const vault = await dbService.getEscrowVault();
     const allOrders = await dbService.getOrders();
@@ -33,6 +36,7 @@ export default function AdminConsolePage() {
     setDevices(devs);
     setActivityLogs(logs);
     if (balance.total_cad > 0) setEscrowBalance(balance);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -104,47 +108,53 @@ export default function AdminConsolePage() {
 
           {/* Metrics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Pending Approvals</span>
-                <Users size={20} className="text-black" />
-              </div>
-              <div className="text-4xl font-black text-black font-retro-heading">
-                {pendingApprovals.filter((p) => !p.is_approved).length}
-              </div>
-              <span className="text-xs text-black font-bold uppercase">Audit Queue (`profiles`)</span>
-            </div>
+            {loading ? (
+              Array.from({ length: 4 }).map((_, i) => <StatCardSkeleton key={i} />)
+            ) : (
+              <>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Pending Approvals</span>
+                    <Users size={20} className="text-black" />
+                  </div>
+                  <div className="text-4xl font-black text-black font-retro-heading">
+                    {pendingApprovals.filter((p) => !p.is_approved).length}
+                  </div>
+                  <span className="text-xs text-black font-bold uppercase">Audit Queue (`profiles`)</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Escrow Vault Locked</span>
-                <Lock size={20} className="text-black" />
-              </div>
-              <div className="text-3xl font-black text-black font-retro-heading">
-                ${escrowBalance.total_cad.toLocaleString()} CAD
-              </div>
-              <span className="text-xs text-gray-500 font-bold">{escrowBalance.total_rwf.toLocaleString()} RWF</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Escrow Vault Locked</span>
+                    <Lock size={20} className="text-black" />
+                  </div>
+                  <div className="text-3xl font-black text-black font-retro-heading">
+                    ${escrowBalance.total_cad.toLocaleString()} CAD
+                  </div>
+                  <span className="text-xs text-gray-500 font-bold">{escrowBalance.total_rwf.toLocaleString()} RWF</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Active Device Sessions</span>
-                <Smartphone size={20} className="text-black" />
-              </div>
-              <div className="text-4xl font-black text-black font-retro-heading">{devices.length}</div>
-              <span className="text-xs text-gray-500 font-mono">`user_devices`</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Active Device Sessions</span>
+                    <Smartphone size={20} className="text-black" />
+                  </div>
+                  <div className="text-4xl font-black text-black font-retro-heading">{devices.length}</div>
+                  <span className="text-xs text-gray-500 font-mono">`user_devices`</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Database Diagnostics</span>
-                <Database size={20} className="text-black" />
-              </div>
-              <div className="text-base font-bold text-black flex items-center gap-2 uppercase">
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" /> Connected
-              </div>
-              <span className="text-xs text-gray-500 font-bold">12 Database Security policies active</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Database Diagnostics</span>
+                    <Database size={20} className="text-black" />
+                  </div>
+                  <div className="text-base font-bold text-black flex items-center gap-2 uppercase">
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" /> Connected
+                  </div>
+                  <span className="text-xs text-gray-500 font-bold">12 Database Security policies active</span>
+                </div>
+              </>
+            )}
           </div>
 
           {/* Analytics Chart */}

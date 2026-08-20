@@ -24,10 +24,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$db$2e$ts_
 function HomePage() {
     const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedCategory, setSelectedCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         async function loadData() {
+            setLoading(true);
             const data = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$db$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["dbService"].getProducts();
             setProducts(data);
+            setLoading(false);
         }
         loadData();
     }, []);
@@ -36,12 +39,12 @@ function HomePage() {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$home$2f$HeroArea$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HeroArea"], {}, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 25,
+                lineNumber: 28,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$home$2f$FeatureHighlights$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FeatureHighlights"], {}, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 28,
+                lineNumber: 31,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$home$2f$CategoriesSection$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CategoriesSection"], {
@@ -49,22 +52,23 @@ function HomePage() {
                 onSelectCategory: (cat)=>setSelectedCategory(cat)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 31,
+                lineNumber: 34,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$home$2f$ProductGrid$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ProductGrid"], {
                 products: products,
                 selectedCategory: selectedCategory,
-                onSelectCategory: (cat)=>setSelectedCategory(cat)
+                onSelectCategory: (cat)=>setSelectedCategory(cat),
+                loading: loading
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 37,
+                lineNumber: 40,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 23,
+        lineNumber: 26,
         columnNumber: 5
     }, this);
 }

@@ -6,6 +6,7 @@ import { Product } from '@/types';
 import { dbService } from '@/services/db';
 import { useCartStore } from '@/store/useCartStore';
 import { useAuthStore } from '@/store/useAuthStore';
+import { ProductDetailSkeleton } from '@/components/common/Skeleton';
 import { Star, Heart, Share2, ShoppingBag, ShieldCheck, ArrowLeft, ChevronRight } from 'lucide-react';
 
 export default function ProductDetailPage() {
@@ -36,11 +37,7 @@ export default function ProductDetailPage() {
   }, [productId]);
 
   if (loading || !product) {
-    return (
-      <main className="min-h-screen bg-white py-20 px-4 max-w-7xl mx-auto text-center font-sans">
-        <div className="text-base font-bold text-gray-500 animate-pulse">Loading Product Details...</div>
-      </main>
-    );
+    return <ProductDetailSkeleton />;
   }
 
   const images = product.images.length > 0 ? product.images : [
@@ -90,12 +87,6 @@ export default function ProductDetailPage() {
                 alt={product.title}
                 className="w-full h-full object-cover"
               />
-
-              {product.rdb_certified && (
-                <span className="absolute top-4 left-4 bg-black text-white text-xs font-bold px-3 py-1 uppercase tracking-wider flex items-center gap-1.5 shadow">
-                  <ShieldCheck size={14} /> RDB Certified
-                </span>
-              )}
             </div>
           </div>
 
@@ -225,11 +216,9 @@ export default function ProductDetailPage() {
                     alt={rel.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
-                  {rel.rdb_certified && (
-                    <span className="absolute top-3 left-3 bg-black text-white text-[10px] font-bold px-2 py-0.5 uppercase">
-                      RDB Certified
-                    </span>
-                  )}
+                  <span className="absolute top-3 left-3 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-xs flex items-center gap-1.5 z-10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" /> In Stock
+                  </span>
                 </Link>
 
                 <div className="space-y-1">

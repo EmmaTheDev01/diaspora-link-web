@@ -45,12 +45,14 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function VendorRwandaPage() {
     _s();
     const { user, setUser, currency } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$useAuthStore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"])();
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('overview');
     const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [orders, setOrders] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [isAddModalOpen, setIsAddModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [editingProduct, setEditingProduct] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     // Form states for Add / Edit product
@@ -72,10 +74,12 @@ function VendorRwandaPage() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "VendorRwandaPage.useEffect": ()=>{
             async function loadData() {
+                setLoading(true);
                 const prodData = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$db$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["dbService"].getVendorProducts(user?.id || 'usr_vrw_1');
                 const orderData = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$db$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["dbService"].getOrders(user?.id);
                 setProducts(prodData);
                 setOrders(orderData);
+                setLoading(false);
                 if (user) {
                     if (user.full_name) setFullName(user.full_name);
                     if (user.email) setEmail(user.email);
@@ -261,7 +265,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 253,
+                lineNumber: 259,
                 columnNumber: 48
             }, this)
         },
@@ -272,7 +276,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 254,
+                lineNumber: 260,
                 columnNumber: 57
             }, this)
         },
@@ -283,7 +287,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 255,
+                lineNumber: 261,
                 columnNumber: 54
             }, this)
         },
@@ -294,7 +298,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 256,
+                lineNumber: 262,
                 columnNumber: 57
             }, this)
         },
@@ -305,7 +309,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 257,
+                lineNumber: 263,
                 columnNumber: 63
             }, this)
         },
@@ -316,7 +320,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 258,
+                lineNumber: 264,
                 columnNumber: 54
             }, this)
         },
@@ -327,7 +331,7 @@ function VendorRwandaPage() {
                 size: 18
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 259,
+                lineNumber: 265,
                 columnNumber: 61
             }, this)
         }
@@ -357,19 +361,19 @@ function VendorRwandaPage() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 278,
+                                                    lineNumber: 284,
                                                     columnNumber: 19
                                                 }, this),
                                                 " VERIFIED EXPORTER COOPERATIVE"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 277,
+                                            lineNumber: 283,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 276,
+                                        lineNumber: 282,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -377,7 +381,7 @@ function VendorRwandaPage() {
                                         children: user?.full_name || 'Gishwati Cooperative Operations'
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 281,
+                                        lineNumber: 287,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -385,13 +389,13 @@ function VendorRwandaPage() {
                                         children: "Exporting premium agricultural produce to Toronto diaspora importers."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 284,
+                                        lineNumber: 290,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 275,
+                                lineNumber: 281,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -406,20 +410,20 @@ function VendorRwandaPage() {
                                         className: "inline mr-1.5"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 294,
+                                        lineNumber: 300,
                                         columnNumber: 15
                                     }, this),
                                     " Add New Export Product"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 287,
+                                lineNumber: 293,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 274,
+                        lineNumber: 280,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -436,7 +440,7 @@ function VendorRwandaPage() {
                                                 children: "Gross Export Sales"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 302,
+                                                lineNumber: 308,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$credit$2d$card$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__CreditCard$3e$__["CreditCard"], {
@@ -444,13 +448,13 @@ function VendorRwandaPage() {
                                                 className: "text-black"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 303,
+                                                lineNumber: 309,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 301,
+                                        lineNumber: 307,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -462,7 +466,7 @@ function VendorRwandaPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 305,
+                                        lineNumber: 311,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -473,13 +477,13 @@ function VendorRwandaPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 308,
+                                        lineNumber: 314,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 300,
+                                lineNumber: 306,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -493,7 +497,7 @@ function VendorRwandaPage() {
                                                 children: "Active Products"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 315,
+                                                lineNumber: 321,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$package$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Package$3e$__["Package"], {
@@ -501,13 +505,13 @@ function VendorRwandaPage() {
                                                 className: "text-black"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 316,
+                                                lineNumber: 322,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 314,
+                                        lineNumber: 320,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -515,7 +519,7 @@ function VendorRwandaPage() {
                                         children: products.length
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 318,
+                                        lineNumber: 324,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -523,13 +527,13 @@ function VendorRwandaPage() {
                                         children: "Verified catalog items"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 319,
+                                        lineNumber: 325,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 313,
+                                lineNumber: 319,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -543,7 +547,7 @@ function VendorRwandaPage() {
                                                 children: "Escrow Vault Payouts"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 324,
+                                                lineNumber: 330,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__["ShieldCheck"], {
@@ -551,13 +555,13 @@ function VendorRwandaPage() {
                                                 className: "text-black"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 325,
+                                                lineNumber: 331,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 323,
+                                        lineNumber: 329,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -569,7 +573,7 @@ function VendorRwandaPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 327,
+                                        lineNumber: 333,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -580,13 +584,13 @@ function VendorRwandaPage() {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 330,
+                                        lineNumber: 336,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 322,
+                                lineNumber: 328,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -600,7 +604,7 @@ function VendorRwandaPage() {
                                                 children: "Trade Corridor"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 337,
+                                                lineNumber: 343,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
@@ -608,13 +612,13 @@ function VendorRwandaPage() {
                                                 className: "text-black"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 338,
+                                                lineNumber: 344,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 336,
+                                        lineNumber: 342,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -622,7 +626,7 @@ function VendorRwandaPage() {
                                         children: "KGL ✈ YYZ"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 340,
+                                        lineNumber: 346,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -630,19 +634,19 @@ function VendorRwandaPage() {
                                         children: "RwandAir Direct Corridor"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 341,
+                                        lineNumber: 347,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 335,
+                                lineNumber: 341,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 299,
+                        lineNumber: 305,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -653,24 +657,24 @@ function VendorRwandaPage() {
                                 children: "Revenue & Export Sales Visualisation"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 346,
+                                lineNumber: 352,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$charts$2f$VendorSalesChart$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VendorSalesChart"], {}, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 347,
+                                lineNumber: 353,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 345,
+                        lineNumber: 351,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 272,
+                lineNumber: 278,
                 columnNumber: 9
             }, this),
             activeTab === 'orders' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -686,7 +690,7 @@ function VendorRwandaPage() {
                                         children: "Orders & Freight Deliveries Table"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 357,
+                                        lineNumber: 363,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -694,13 +698,13 @@ function VendorRwandaPage() {
                                         children: "Real-time purchase orders, 256-bit Escrow Vault locks, and Air Waybills."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 358,
+                                        lineNumber: 364,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 356,
+                                lineNumber: 362,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -711,13 +715,13 @@ function VendorRwandaPage() {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 360,
+                                lineNumber: 366,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 355,
+                        lineNumber: 361,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -736,7 +740,7 @@ function VendorRwandaPage() {
                                                     children: "Order Number"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 370,
+                                                    lineNumber: 376,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -744,7 +748,7 @@ function VendorRwandaPage() {
                                                     children: "Buyer Name & Delivery Address"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 371,
+                                                    lineNumber: 377,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -752,7 +756,7 @@ function VendorRwandaPage() {
                                                     children: "Total Price"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 372,
+                                                    lineNumber: 378,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -760,7 +764,7 @@ function VendorRwandaPage() {
                                                     children: "Escrow Status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 373,
+                                                    lineNumber: 379,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -768,7 +772,7 @@ function VendorRwandaPage() {
                                                     children: "AWB Freight Code"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 374,
+                                                    lineNumber: 380,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -776,7 +780,7 @@ function VendorRwandaPage() {
                                                     children: "Order Status"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 375,
+                                                    lineNumber: 381,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -784,18 +788,18 @@ function VendorRwandaPage() {
                                                     children: "Action"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 376,
+                                                    lineNumber: 382,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 369,
+                                            lineNumber: 375,
                                             columnNumber: 19
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 368,
+                                        lineNumber: 374,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -808,7 +812,7 @@ function VendorRwandaPage() {
                                                         children: o.order_number
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 383,
+                                                        lineNumber: 389,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -822,20 +826,20 @@ function VendorRwandaPage() {
                                                                         className: "text-gray-500 shrink-0"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                        lineNumber: 386,
+                                                                        lineNumber: 392,
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                         children: o.buyer_name || o.delivery_address?.recipient_name || 'Grace Mutoni'
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                        lineNumber: 387,
+                                                                        lineNumber: 393,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 385,
+                                                                lineNumber: 391,
                                                                 columnNumber: 27
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -849,13 +853,13 @@ function VendorRwandaPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 389,
+                                                                lineNumber: 395,
                                                                 columnNumber: 27
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 384,
+                                                        lineNumber: 390,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -873,13 +877,13 @@ function VendorRwandaPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 394,
+                                                                lineNumber: 400,
                                                                 columnNumber: 57
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 393,
+                                                        lineNumber: 399,
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -887,29 +891,6 @@ function VendorRwandaPage() {
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: `text-xs font-bold px-2.5 py-1 rounded-full uppercase ${o.escrow_released ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}`,
                                                             children: o.escrow_released ? 'Released' : 'Locked in Escrow'
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 397,
-                                                            columnNumber: 27
-                                                        }, this)
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 396,
-                                                        columnNumber: 25
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                        className: "p-4 font-mono text-xs font-bold text-black",
-                                                        children: o.awb_number || 'AWB-KGL-88291'
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 401,
-                                                        columnNumber: 25
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                        className: "p-4",
-                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "bg-black text-white font-bold text-xs px-2.5 py-1 rounded uppercase font-mono",
-                                                            children: o.status
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
                                                             lineNumber: 403,
@@ -921,6 +902,29 @@ function VendorRwandaPage() {
                                                         columnNumber: 25
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "p-4 font-mono text-xs font-bold text-black",
+                                                        children: o.awb_number || 'AWB-KGL-88291'
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/vendor-rwanda/page.tsx",
+                                                        lineNumber: 407,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                        className: "p-4",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "bg-black text-white font-bold text-xs px-2.5 py-1 rounded uppercase font-mono",
+                                                            children: o.status
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/vendor-rwanda/page.tsx",
+                                                            lineNumber: 409,
+                                                            columnNumber: 27
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/vendor-rwanda/page.tsx",
+                                                        lineNumber: 408,
+                                                        columnNumber: 25
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
                                                         className: "p-4",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                             onClick: ()=>__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$hot$2d$toast$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].success(`Viewing order details for ${o.order_number}`),
@@ -928,18 +932,18 @@ function VendorRwandaPage() {
                                                             children: "View Order"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 408,
+                                                            lineNumber: 414,
                                                             columnNumber: 27
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 407,
+                                                        lineNumber: 413,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, o.id, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 382,
+                                                lineNumber: 388,
                                                 columnNumber: 23
                                             }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
                                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -948,39 +952,39 @@ function VendorRwandaPage() {
                                                 children: "No active orders found in database table."
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 419,
+                                                lineNumber: 425,
                                                 columnNumber: 23
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 418,
+                                            lineNumber: 424,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 379,
+                                        lineNumber: 385,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 367,
+                                lineNumber: 373,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                            lineNumber: 366,
+                            lineNumber: 372,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 365,
+                        lineNumber: 371,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 354,
+                lineNumber: 360,
                 columnNumber: 9
             }, this),
             activeTab === 'catalog' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -996,7 +1000,7 @@ function VendorRwandaPage() {
                                         children: "Manage Seller Product Inventory"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 436,
+                                        lineNumber: 442,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1004,13 +1008,13 @@ function VendorRwandaPage() {
                                         children: "Create, update pricing, edit details, or toggle availability of export items."
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 437,
+                                        lineNumber: 443,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 435,
+                                lineNumber: 441,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1025,20 +1029,20 @@ function VendorRwandaPage() {
                                         className: "inline mr-1.5"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 446,
+                                        lineNumber: 452,
                                         columnNumber: 15
                                     }, this),
                                     " Add Export Item"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 439,
+                                lineNumber: 445,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 434,
+                        lineNumber: 440,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1057,7 +1061,7 @@ function VendorRwandaPage() {
                                                         className: "w-full h-full object-cover"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 455,
+                                                        lineNumber: 461,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1066,13 +1070,13 @@ function VendorRwandaPage() {
                                                         children: prod.in_stock !== false ? 'In Stock' : 'Out of Stock'
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 456,
+                                                        lineNumber: 462,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 454,
+                                                lineNumber: 460,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1083,7 +1087,7 @@ function VendorRwandaPage() {
                                                         children: prod.title
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 467,
+                                                        lineNumber: 473,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1094,7 +1098,7 @@ function VendorRwandaPage() {
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 468,
+                                                        lineNumber: 474,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1112,13 +1116,13 @@ function VendorRwandaPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                    lineNumber: 472,
+                                                                    lineNumber: 478,
                                                                     columnNumber: 65
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 471,
+                                                            lineNumber: 477,
                                                             columnNumber: 25
                                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                                             children: [
@@ -1134,30 +1138,30 @@ function VendorRwandaPage() {
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                    lineNumber: 476,
+                                                                    lineNumber: 482,
                                                                     columnNumber: 60
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 475,
+                                                            lineNumber: 481,
                                                             columnNumber: 25
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 469,
+                                                        lineNumber: 475,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 466,
+                                                lineNumber: 472,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 453,
+                                        lineNumber: 459,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1171,14 +1175,14 @@ function VendorRwandaPage() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 488,
+                                                        lineNumber: 494,
                                                         columnNumber: 21
                                                     }, this),
                                                     " Edit Item"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 484,
+                                                lineNumber: 490,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1189,35 +1193,35 @@ function VendorRwandaPage() {
                                                     size: 16
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 495,
+                                                    lineNumber: 501,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 490,
+                                                lineNumber: 496,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 483,
+                                        lineNumber: 489,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, prod.id, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 452,
+                                lineNumber: 458,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 450,
+                        lineNumber: 456,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 433,
+                lineNumber: 439,
                 columnNumber: 9
             }, this),
             activeTab === 'finances' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1228,7 +1232,7 @@ function VendorRwandaPage() {
                         children: "Finances & Escrow Ledger"
                     }, void 0, false, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 507,
+                        lineNumber: 513,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1239,7 +1243,7 @@ function VendorRwandaPage() {
                                 children: "Escrow Payout Ledger"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 509,
+                                lineNumber: 515,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1254,7 +1258,7 @@ function VendorRwandaPage() {
                                                     children: "Order #ORD-88291 (Gishwati Tea 250g)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 513,
+                                                    lineNumber: 519,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1262,13 +1266,13 @@ function VendorRwandaPage() {
                                                     children: "Buyer: Grace Mutoni (Toronto)"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 514,
+                                                    lineNumber: 520,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 512,
+                                            lineNumber: 518,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1279,7 +1283,7 @@ function VendorRwandaPage() {
                                                     children: "$77.00 CAD"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 517,
+                                                    lineNumber: 523,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1287,36 +1291,36 @@ function VendorRwandaPage() {
                                                     children: "Released via PIN"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 518,
+                                                    lineNumber: 524,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 516,
+                                            lineNumber: 522,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 511,
+                                    lineNumber: 517,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 510,
+                                lineNumber: 516,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 508,
+                        lineNumber: 514,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 506,
+                lineNumber: 512,
                 columnNumber: 9
             }, this),
             activeTab === 'analytics' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1330,7 +1334,7 @@ function VendorRwandaPage() {
                                 children: "Analytics & Most Liked Products"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 530,
+                                lineNumber: 536,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1338,13 +1342,13 @@ function VendorRwandaPage() {
                                 children: "Top performing products ranked by buyer likes, wishlists, views, and sales volume."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 531,
+                                lineNumber: 537,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 529,
+                        lineNumber: 535,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1355,18 +1359,18 @@ function VendorRwandaPage() {
                                 children: "Revenue Visualisation"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 535,
+                                lineNumber: 541,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$charts$2f$VendorSalesChart$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["VendorSalesChart"], {}, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 536,
+                                lineNumber: 542,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 534,
+                        lineNumber: 540,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1383,14 +1387,14 @@ function VendorRwandaPage() {
                                                 className: "text-red-500 fill-red-500"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 543,
+                                                lineNumber: 549,
                                                 columnNumber: 17
                                             }, this),
                                             " Most Liked & Wishlisted Catalog Items"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 542,
+                                        lineNumber: 548,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1398,13 +1402,13 @@ function VendorRwandaPage() {
                                         children: "Buyer Engagement Ranking"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 545,
+                                        lineNumber: 551,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 541,
+                                lineNumber: 547,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1421,7 +1425,7 @@ function VendorRwandaPage() {
                                                         children: "Rank"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 552,
+                                                        lineNumber: 558,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1429,7 +1433,7 @@ function VendorRwandaPage() {
                                                         children: "Product"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 553,
+                                                        lineNumber: 559,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1437,7 +1441,7 @@ function VendorRwandaPage() {
                                                         children: "Category"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 554,
+                                                        lineNumber: 560,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1445,7 +1449,7 @@ function VendorRwandaPage() {
                                                         children: "Likes"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 555,
+                                                        lineNumber: 561,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1453,7 +1457,7 @@ function VendorRwandaPage() {
                                                         children: "Wishlisted"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 556,
+                                                        lineNumber: 562,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1461,7 +1465,7 @@ function VendorRwandaPage() {
                                                         children: "Views"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 557,
+                                                        lineNumber: 563,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1469,18 +1473,18 @@ function VendorRwandaPage() {
                                                         children: "Price"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 558,
+                                                        lineNumber: 564,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 551,
+                                                lineNumber: 557,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 550,
+                                            lineNumber: 556,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1498,12 +1502,12 @@ function VendorRwandaPage() {
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 565,
+                                                                lineNumber: 571,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 564,
+                                                            lineNumber: 570,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1517,7 +1521,7 @@ function VendorRwandaPage() {
                                                                         className: "w-10 h-10 rounded-lg object-cover border border-gray-200 shrink-0"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                        lineNumber: 571,
+                                                                        lineNumber: 577,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1525,18 +1529,18 @@ function VendorRwandaPage() {
                                                                         children: prod.title
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                        lineNumber: 572,
+                                                                        lineNumber: 578,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 570,
+                                                                lineNumber: 576,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 569,
+                                                            lineNumber: 575,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1544,7 +1548,7 @@ function VendorRwandaPage() {
                                                             children: prod.category
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 575,
+                                                            lineNumber: 581,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1555,7 +1559,7 @@ function VendorRwandaPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 576,
+                                                            lineNumber: 582,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1566,7 +1570,7 @@ function VendorRwandaPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 577,
+                                                            lineNumber: 583,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1577,7 +1581,7 @@ function VendorRwandaPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 578,
+                                                            lineNumber: 584,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1589,41 +1593,41 @@ function VendorRwandaPage() {
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 579,
+                                                            lineNumber: 585,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, prod.id, true, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 563,
+                                                    lineNumber: 569,
                                                     columnNumber: 21
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 561,
+                                            lineNumber: 567,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 549,
+                                    lineNumber: 555,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 548,
+                                lineNumber: 554,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 540,
+                        lineNumber: 546,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 528,
+                lineNumber: 534,
                 columnNumber: 9
             }, this),
             activeTab === 'kyc' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1634,7 +1638,7 @@ function VendorRwandaPage() {
                         children: "Rwanda Exporter KYC Verification"
                     }, void 0, false, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 592,
+                        lineNumber: 598,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1642,7 +1646,7 @@ function VendorRwandaPage() {
                         children: "Official RDB TIN & Exporter Cooperative Verification details."
                     }, void 0, false, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 593,
+                        lineNumber: 599,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1655,7 +1659,7 @@ function VendorRwandaPage() {
                                         children: "RDB TIN Number"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 596,
+                                        lineNumber: 602,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1665,13 +1669,13 @@ function VendorRwandaPage() {
                                         className: "w-full p-3 bg-gray-50 border rounded-xl font-mono font-bold text-sm text-black"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 597,
+                                        lineNumber: 603,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 595,
+                                lineNumber: 601,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1681,7 +1685,7 @@ function VendorRwandaPage() {
                                         children: "KYC Status"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 600,
+                                        lineNumber: 606,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1691,32 +1695,32 @@ function VendorRwandaPage() {
                                                 className: "w-2.5 h-2.5 rounded-full bg-emerald-500"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 602,
+                                                lineNumber: 608,
                                                 columnNumber: 17
                                             }, this),
                                             " RDB Verified Exporter"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 601,
+                                        lineNumber: 607,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 599,
+                                lineNumber: 605,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 594,
+                        lineNumber: 600,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 591,
+                lineNumber: 597,
                 columnNumber: 9
             }, this),
             activeTab === 'preferences' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1730,7 +1734,7 @@ function VendorRwandaPage() {
                                 children: "Seller Account & Preferences"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 613,
+                                lineNumber: 619,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1738,13 +1742,13 @@ function VendorRwandaPage() {
                                 children: "Manage your business profile avatar, contact details, trade corridor preferences, and payout settings."
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 616,
+                                lineNumber: 622,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 612,
+                        lineNumber: 618,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1763,14 +1767,14 @@ function VendorRwandaPage() {
                                                 className: "w-full h-full object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 625,
+                                                lineNumber: 631,
                                                 columnNumber: 19
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__User$3e$__["User"], {
                                                 size: 36,
                                                 className: "text-gray-400"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 627,
+                                                lineNumber: 633,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1780,7 +1784,7 @@ function VendorRwandaPage() {
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 630,
+                                                        lineNumber: 636,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1788,7 +1792,7 @@ function VendorRwandaPage() {
                                                         children: "Upload"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 631,
+                                                        lineNumber: 637,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1798,19 +1802,19 @@ function VendorRwandaPage() {
                                                         onChange: handleAvatarChange
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 632,
+                                                        lineNumber: 638,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 629,
+                                                lineNumber: 635,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 623,
+                                        lineNumber: 629,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1821,7 +1825,7 @@ function VendorRwandaPage() {
                                                 children: fullName || user?.full_name || 'Seller Storefront'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 637,
+                                                lineNumber: 643,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1829,7 +1833,7 @@ function VendorRwandaPage() {
                                                 children: user?.email
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 638,
+                                                lineNumber: 644,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1839,7 +1843,7 @@ function VendorRwandaPage() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 640,
+                                                        lineNumber: 646,
                                                         columnNumber: 19
                                                     }, this),
                                                     " Upload Storefront Logo",
@@ -1850,25 +1854,25 @@ function VendorRwandaPage() {
                                                         onChange: handleAvatarChange
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 641,
+                                                        lineNumber: 647,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 639,
+                                                lineNumber: 645,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 636,
+                                        lineNumber: 642,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 622,
+                                lineNumber: 628,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1881,14 +1885,14 @@ function VendorRwandaPage() {
                                                 size: 18
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 648,
+                                                lineNumber: 654,
                                                 columnNumber: 17
                                             }, this),
                                             " Storefront Profile Info"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 647,
+                                        lineNumber: 653,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1901,7 +1905,7 @@ function VendorRwandaPage() {
                                                         children: "Business / Exporter Name"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 653,
+                                                        lineNumber: 659,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1912,13 +1916,13 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 654,
+                                                        lineNumber: 660,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 652,
+                                                lineNumber: 658,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1928,7 +1932,7 @@ function VendorRwandaPage() {
                                                         children: "Email Address"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 664,
+                                                        lineNumber: 670,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1939,13 +1943,13 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black font-mono"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 665,
+                                                        lineNumber: 671,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 663,
+                                                lineNumber: 669,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1955,7 +1959,7 @@ function VendorRwandaPage() {
                                                         children: "Business Phone Number"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 675,
+                                                        lineNumber: 681,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1965,13 +1969,13 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 676,
+                                                        lineNumber: 682,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 674,
+                                                lineNumber: 680,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1981,7 +1985,7 @@ function VendorRwandaPage() {
                                                         children: "Payout Settlement Method"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 685,
+                                                        lineNumber: 691,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1992,25 +1996,25 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 686,
+                                                        lineNumber: 692,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 684,
+                                                lineNumber: 690,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 651,
+                                        lineNumber: 657,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 646,
+                                lineNumber: 652,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2023,14 +2027,14 @@ function VendorRwandaPage() {
                                                 size: 18
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 699,
+                                                lineNumber: 705,
                                                 columnNumber: 17
                                             }, this),
                                             " Notification & Security Preferences"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 698,
+                                        lineNumber: 704,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2043,7 +2047,7 @@ function VendorRwandaPage() {
                                                         children: "Push & SMS Real-time Escrow Notifications"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 704,
+                                                        lineNumber: 710,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2053,13 +2057,13 @@ function VendorRwandaPage() {
                                                         className: "w-4 h-4 accent-black cursor-pointer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 705,
+                                                        lineNumber: 711,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 703,
+                                                lineNumber: 709,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -2069,7 +2073,7 @@ function VendorRwandaPage() {
                                                         children: "Air Waybill Luggage Flight Tracking SMS Alerts"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 714,
+                                                        lineNumber: 720,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2079,25 +2083,25 @@ function VendorRwandaPage() {
                                                         className: "w-4 h-4 accent-black cursor-pointer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 715,
+                                                        lineNumber: 721,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 713,
+                                                lineNumber: 719,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 702,
+                                        lineNumber: 708,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 697,
+                                lineNumber: 703,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2108,26 +2112,26 @@ function VendorRwandaPage() {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 729,
+                                        lineNumber: 735,
                                         columnNumber: 15
                                     }, this),
                                     " Save Seller Preferences"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 725,
+                                lineNumber: 731,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                        lineNumber: 621,
+                        lineNumber: 627,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 611,
+                lineNumber: 617,
                 columnNumber: 9
             }, this),
             (isAddModalOpen || editingProduct) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2145,12 +2149,12 @@ function VendorRwandaPage() {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                lineNumber: 746,
+                                lineNumber: 752,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                            lineNumber: 739,
+                            lineNumber: 745,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2163,7 +2167,7 @@ function VendorRwandaPage() {
                                             size: 24
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 751,
+                                            lineNumber: 757,
                                             columnNumber: 17
                                         }, this),
                                         " ",
@@ -2171,7 +2175,7 @@ function VendorRwandaPage() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 750,
+                                    lineNumber: 756,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2179,13 +2183,13 @@ function VendorRwandaPage() {
                                     children: editingProduct ? 'Update product pricing, title, image, description, or stock.' : 'List a new export product for international buyers.'
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 753,
+                                    lineNumber: 759,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                            lineNumber: 749,
+                            lineNumber: 755,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -2201,14 +2205,14 @@ function VendorRwandaPage() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 761,
+                                                    lineNumber: 767,
                                                     columnNumber: 19
                                                 }, this),
                                                 " Product Title"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 760,
+                                            lineNumber: 766,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2220,13 +2224,13 @@ function VendorRwandaPage() {
                                             className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 763,
+                                            lineNumber: 769,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 759,
+                                    lineNumber: 765,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2242,14 +2246,14 @@ function VendorRwandaPage() {
                                                                 size: 14
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 779,
+                                                                lineNumber: 785,
                                                                 columnNumber: 25
                                                             }, this),
                                                             " Price (RWF) Primary"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 778,
+                                                        lineNumber: 784,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2264,13 +2268,13 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 781,
+                                                        lineNumber: 787,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 777,
+                                                lineNumber: 783,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2282,14 +2286,14 @@ function VendorRwandaPage() {
                                                                 size: 14
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 795,
+                                                                lineNumber: 801,
                                                                 columnNumber: 25
                                                             }, this),
                                                             " Converted (CAD $)"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 794,
+                                                        lineNumber: 800,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2305,19 +2309,19 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black font-mono"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 797,
+                                                        lineNumber: 803,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 793,
+                                                lineNumber: 799,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 776,
+                                        lineNumber: 782,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                         children: [
@@ -2330,14 +2334,14 @@ function VendorRwandaPage() {
                                                                 size: 14
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 815,
+                                                                lineNumber: 821,
                                                                 columnNumber: 25
                                                             }, this),
                                                             " Price (CAD $) Primary"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 814,
+                                                        lineNumber: 820,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2353,13 +2357,13 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 817,
+                                                        lineNumber: 823,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 813,
+                                                lineNumber: 819,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2371,14 +2375,14 @@ function VendorRwandaPage() {
                                                                 size: 14
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                                lineNumber: 832,
+                                                                lineNumber: 838,
                                                                 columnNumber: 25
                                                             }, this),
                                                             " Converted (RWF)"
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 831,
+                                                        lineNumber: 837,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2393,24 +2397,24 @@ function VendorRwandaPage() {
                                                         className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black font-mono"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 834,
+                                                        lineNumber: 840,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                lineNumber: 830,
+                                                lineNumber: 836,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 812,
+                                        lineNumber: 818,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 774,
+                                    lineNumber: 780,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2425,14 +2429,14 @@ function VendorRwandaPage() {
                                                             size: 14
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 853,
+                                                            lineNumber: 859,
                                                             columnNumber: 21
                                                         }, this),
                                                         " Category"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 852,
+                                                    lineNumber: 858,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -2445,7 +2449,7 @@ function VendorRwandaPage() {
                                                             children: "Coffee & Tea"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 860,
+                                                            lineNumber: 866,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -2453,7 +2457,7 @@ function VendorRwandaPage() {
                                                             children: "Crafts & Art"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 861,
+                                                            lineNumber: 867,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -2461,7 +2465,7 @@ function VendorRwandaPage() {
                                                             children: "Gifts & Spices"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 862,
+                                                            lineNumber: 868,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -2469,19 +2473,19 @@ function VendorRwandaPage() {
                                                             children: "Home Decor"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 863,
+                                                            lineNumber: 869,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 855,
+                                                    lineNumber: 861,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 851,
+                                            lineNumber: 857,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2493,14 +2497,14 @@ function VendorRwandaPage() {
                                                             size: 14
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                            lineNumber: 869,
+                                                            lineNumber: 875,
                                                             columnNumber: 21
                                                         }, this),
                                                         " Stock Quantity"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 868,
+                                                    lineNumber: 874,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2511,19 +2515,19 @@ function VendorRwandaPage() {
                                                     className: "w-full p-3 bg-gray-50 border border-gray-300 rounded-xl font-bold text-sm text-black focus:outline-none focus:border-black"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 871,
+                                                    lineNumber: 877,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 867,
+                                            lineNumber: 873,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 850,
+                                    lineNumber: 856,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2535,14 +2539,14 @@ function VendorRwandaPage() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 883,
+                                                    lineNumber: 889,
                                                     columnNumber: 19
                                                 }, this),
                                                 " Product Image Upload"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 882,
+                                            lineNumber: 888,
                                             columnNumber: 17
                                         }, this),
                                         imageUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2554,7 +2558,7 @@ function VendorRwandaPage() {
                                                     className: "w-full h-full object-cover"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 888,
+                                                    lineNumber: 894,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2566,12 +2570,12 @@ function VendorRwandaPage() {
                                                         size: 14
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                        lineNumber: 895,
+                                                        lineNumber: 901,
                                                         columnNumber: 23
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 889,
+                                                    lineNumber: 895,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2579,13 +2583,13 @@ function VendorRwandaPage() {
                                                     children: "Image Loaded"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 897,
+                                                    lineNumber: 903,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 887,
+                                            lineNumber: 893,
                                             columnNumber: 19
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
                                             className: "border-2 border-dashed border-gray-300 hover:border-black rounded-2xl p-5 flex flex-col items-center justify-center gap-1.5 text-center cursor-pointer transition bg-gray-50 hover:bg-gray-100/50 mb-2",
@@ -2595,7 +2599,7 @@ function VendorRwandaPage() {
                                                     className: "text-gray-400"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 903,
+                                                    lineNumber: 909,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2603,7 +2607,7 @@ function VendorRwandaPage() {
                                                     children: "Click to upload product image file"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 904,
+                                                    lineNumber: 910,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -2611,7 +2615,7 @@ function VendorRwandaPage() {
                                                     children: "PNG, JPG, WEBP up to 5MB"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 905,
+                                                    lineNumber: 911,
                                                     columnNumber: 21
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2621,13 +2625,13 @@ function VendorRwandaPage() {
                                                     onChange: handleImageFileChange
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 906,
+                                                    lineNumber: 912,
                                                     columnNumber: 21
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 902,
+                                            lineNumber: 908,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2638,7 +2642,7 @@ function VendorRwandaPage() {
                                                     children: "Or paste image URL link:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 911,
+                                                    lineNumber: 917,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -2649,19 +2653,19 @@ function VendorRwandaPage() {
                                                     className: "w-full p-2.5 bg-gray-50 border border-gray-300 rounded-xl font-bold text-xs text-black focus:outline-none focus:border-black"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 912,
+                                                    lineNumber: 918,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 910,
+                                            lineNumber: 916,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 881,
+                                    lineNumber: 887,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2673,14 +2677,14 @@ function VendorRwandaPage() {
                                                     size: 14
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                                    lineNumber: 924,
+                                                    lineNumber: 930,
                                                     columnNumber: 19
                                                 }, this),
                                                 " Description"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 923,
+                                            lineNumber: 929,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -2692,13 +2696,13 @@ function VendorRwandaPage() {
                                             placeholder: "Product description and origin details..."
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                            lineNumber: 926,
+                                            lineNumber: 932,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 922,
+                                    lineNumber: 928,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2708,39 +2712,39 @@ function VendorRwandaPage() {
                                         children: editingProduct ? 'Save Product Changes' : 'Register Product To Catalog'
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                        lineNumber: 940,
+                                        lineNumber: 946,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                                    lineNumber: 936,
+                                    lineNumber: 942,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                            lineNumber: 758,
+                            lineNumber: 764,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                    lineNumber: 738,
+                    lineNumber: 744,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-                lineNumber: 737,
+                lineNumber: 743,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/vendor-rwanda/page.tsx",
-        lineNumber: 263,
+        lineNumber: 269,
         columnNumber: 5
     }, this);
 }
-_s(VendorRwandaPage, "LqRtU+YVgbcir2ySULM7Egu+TaE=", false, function() {
+_s(VendorRwandaPage, "FkfgUZ8ANLXlTS91F3WjzQ27jWg=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$store$2f$useAuthStore$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuthStore"]
     ];

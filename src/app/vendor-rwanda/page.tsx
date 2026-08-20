@@ -32,11 +32,14 @@ import {
   Eye,
 } from 'lucide-react';
 
+import { StatCardSkeleton, ProductCardSkeleton, TableRowSkeleton } from '@/components/common/Skeleton';
+
 export default function VendorRwandaPage() {
   const { user, setUser, currency } = useAuthStore();
   const [activeTab, setActiveTab] = useState('overview');
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
@@ -60,10 +63,12 @@ export default function VendorRwandaPage() {
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       const prodData = await dbService.getVendorProducts(user?.id || 'usr_vrw_1');
       const orderData = await dbService.getOrders(user?.id);
       setProducts(prodData);
       setOrders(orderData);
+      setLoading(false);
 
       if (user) {
         if (user.full_name) setFullName(user.full_name);
@@ -297,49 +302,55 @@ export default function VendorRwandaPage() {
 
           {/* Dynamic Metrics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Gross Export Sales</span>
-                <CreditCard size={20} className="text-black" />
-              </div>
-              <div className="text-3xl font-black text-black font-retro-heading">
-                ${orders.reduce((acc, curr) => acc + (curr.total_cad || 0), 0).toFixed(2)} CAD
-              </div>
-              <span className="text-xs text-gray-500 font-medium font-mono">
-                {orders.reduce((acc, curr) => acc + (curr.total_rwf || 0), 0).toLocaleString()} RWF volume
-              </span>
-            </div>
+            {loading ? (
+              Array.from({ length: 4 }).map((_, i) => <StatCardSkeleton key={i} />)
+            ) : (
+              <>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Gross Export Sales</span>
+                    <CreditCard size={20} className="text-black" />
+                  </div>
+                  <div className="text-3xl font-black text-black font-retro-heading">
+                    ${orders.reduce((acc, curr) => acc + (curr.total_cad || 0), 0).toFixed(2)} CAD
+                  </div>
+                  <span className="text-xs text-gray-500 font-medium font-mono">
+                    {orders.reduce((acc, curr) => acc + (curr.total_rwf || 0), 0).toLocaleString()} RWF volume
+                  </span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Active Products</span>
-                <Package size={20} className="text-black" />
-              </div>
-              <div className="text-4xl font-black text-black font-retro-heading">{products.length}</div>
-              <span className="text-xs text-gray-500 font-medium">Verified catalog items</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Active Products</span>
+                    <Package size={20} className="text-black" />
+                  </div>
+                  <div className="text-4xl font-black text-black font-retro-heading">{products.length}</div>
+                  <span className="text-xs text-gray-500 font-medium">Verified catalog items</span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Escrow Vault Payouts</span>
-                <ShieldCheck size={20} className="text-black" />
-              </div>
-              <div className="text-3xl font-black text-black font-retro-heading">
-                ${orders.filter(o => o.escrow_released || o.status === 'delivered').reduce((acc, curr) => acc + (curr.total_cad || 0), 0).toFixed(2)} CAD
-              </div>
-              <span className="text-xs text-emerald-600 font-bold font-mono">
-                {orders.length > 0 ? Math.round((orders.filter(o => o.escrow_released || o.status === 'delivered').length / orders.length) * 100) : 100}% Released via PIN
-              </span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Escrow Vault Payouts</span>
+                    <ShieldCheck size={20} className="text-black" />
+                  </div>
+                  <div className="text-3xl font-black text-black font-retro-heading">
+                    ${orders.filter(o => o.escrow_released || o.status === 'delivered').reduce((acc, curr) => acc + (curr.total_cad || 0), 0).toFixed(2)} CAD
+                  </div>
+                  <span className="text-xs text-emerald-600 font-bold font-mono">
+                    {orders.length > 0 ? Math.round((orders.filter(o => o.escrow_released || o.status === 'delivered').length / orders.length) * 100) : 100}% Released via PIN
+                  </span>
+                </div>
 
-            <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
-              <div className="flex justify-between text-gray-500">
-                <span className="text-xs font-bold uppercase tracking-wider text-black">Trade Corridor</span>
-                <TrendingUp size={20} className="text-black" />
-              </div>
-              <div className="text-2xl font-black text-black font-retro-heading uppercase">KGL ✈ YYZ</div>
-              <span className="text-xs text-gray-500 font-medium">RwandAir Direct Corridor</span>
-            </div>
+                <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-xs flex flex-col justify-between space-y-3">
+                  <div className="flex justify-between text-gray-500">
+                    <span className="text-xs font-bold uppercase tracking-wider text-black">Trade Corridor</span>
+                    <TrendingUp size={20} className="text-black" />
+                  </div>
+                  <div className="text-2xl font-black text-black font-retro-heading uppercase">KGL ✈ YYZ</div>
+                  <span className="text-xs text-gray-500 font-medium">RwandAir Direct Corridor</span>
+                </div>
+              </>
+            )}
           </div>
 
           <div className="space-y-4">
@@ -377,7 +388,9 @@ export default function VendorRwandaPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {orders.length > 0 ? (
+                  {loading ? (
+                    Array.from({ length: 3 }).map((_, i) => <TableRowSkeleton key={i} cols={7} />)
+                  ) : orders.length > 0 ? (
                     orders.map((o) => (
                       <tr key={o.id} className="hover:bg-gray-50 transition">
                         <td className="p-4 font-mono font-bold text-black">{o.order_number}</td>
@@ -448,7 +461,10 @@ export default function VendorRwandaPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((prod) => (
+            {loading ? (
+              Array.from({ length: 6 }).map((_, i) => <ProductCardSkeleton key={i} />)
+            ) : (
+              products.map((prod) => (
               <div key={prod.id} className="bg-white rounded-2xl border border-gray-200 p-5 space-y-4 shadow-xs relative flex flex-col justify-between">
                 <div>
                   <div className="h-44 bg-gray-100 rounded-xl overflow-hidden relative">
@@ -496,7 +512,8 @@ export default function VendorRwandaPage() {
                   </button>
                 </div>
               </div>
-            ))}
+            ))
+          )}
           </div>
         </div>
       )}
