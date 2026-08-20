@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-poppins: 'Poppins', sans-serif;
+    --retro-blue: #E3F6FA;    /* Soft pastel sky blue (Hero) */
+    --retro-beige: #F7F2EC;   /* Soft warm beige/cream (Side banner 1) */
+    --retro-purple: #ECEEFA;  /* Soft lavender/purple (Side banner 2) */
+    --retro-mint: #E3F2EE;    /* Soft mint green (Promo banner) */
+    --retro-card-bg: #F6F6F6; /* Clean light gray product card backdrop */
+    --retro-text: #111111;    /* Deep crisp black typography */
+    --retro-muted: #777777;   /* Muted secondary text */
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #111111;
+    font-family: var(--font-poppins), 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Magic Link Poppins Typography */
+.font-retro-heading {
+  font-family: var(--font-poppins), 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.retro-hero-bg {
+  background-color: #E3F6FA;
+}
+
+.retro-side-bg-1 {
+  background-color: #F7F2EC;
+}
+
+.retro-side-bg-2 {
+  background-color: #ECEEFA;
+}
+
+.retro-card-bg {
+  background-color: #F6F6F6;
+}
+
+.retro-pill-tag {
+  background-color: #FFFFFF;
+  color: #111111;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.retro-card-hover {
+  transition: all 0.3s ease;
+}
+.retro-card-hover:hover {
+  transform: translateY(-3px);
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F6F6F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #CCCCCC;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #111111;
+}
