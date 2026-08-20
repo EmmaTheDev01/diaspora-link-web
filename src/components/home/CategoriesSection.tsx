@@ -28,8 +28,8 @@ export function CategoriesSection({ selectedCategory, onSelectCategory }: { sele
           <ChevronLeft size={24} />
         </button>
 
-        {/* Categories Grid (Exact circular icons matching screenshots) */}
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 text-center">
+        {/* Categories Horizontal Scrollable Container (Mobile) / Grid (Desktop) */}
+        <div className="flex-1 flex overflow-x-auto no-scrollbar sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 text-center py-2 px-1 snap-x snap-mandatory">
           {CATEGORIES.map((cat) => {
             const IconComponent = cat.icon;
             const isSelected = selectedCategory === cat.id;
@@ -38,21 +38,21 @@ export function CategoriesSection({ selectedCategory, onSelectCategory }: { sele
               <button
                 key={cat.id}
                 onClick={() => onSelectCategory?.(isSelected ? '' : cat.id)}
-                className="flex flex-col items-center gap-3 group cursor-pointer"
+                className="flex flex-col items-center gap-2 sm:gap-3 group cursor-pointer shrink-0 snap-center min-w-[85px] sm:min-w-0"
               >
-                {/* Large Soft Gray Circular Badge (bg-[#F2F2F2] matching screenshots) */}
+                {/* Large Soft Gray Circular Badge */}
                 <div
-                  className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition duration-300 ${
+                  className={`w-16 h-16 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition duration-300 ${
                     isSelected
                       ? 'bg-black text-white shadow-md scale-105'
                       : 'bg-[#F2F2F2] text-[#111111] hover:bg-black hover:text-white hover:scale-105'
                   }`}
                 >
-                  <IconComponent size={28} strokeWidth={1.5} />
+                  <IconComponent size={24} strokeWidth={1.5} className="sm:w-7 sm:h-7" />
                 </div>
 
                 {/* Category Label directly under circle */}
-                <span className={`text-xs font-bold transition ${isSelected ? 'text-black underline' : 'text-black group-hover:text-black'}`}>
+                <span className={`text-[11px] sm:text-xs font-bold transition whitespace-nowrap ${isSelected ? 'text-black underline' : 'text-black group-hover:text-black'}`}>
                   {cat.label}
                 </span>
               </button>

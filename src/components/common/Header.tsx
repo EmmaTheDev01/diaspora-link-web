@@ -14,8 +14,10 @@ import {
   LogOut,
   X,
   ChevronDown,
+  ChevronRight,
   LayoutDashboard,
   Package,
+  Menu,
 } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
 import { useCartStore } from '../../store/useCartStore';
@@ -30,6 +32,7 @@ export function Header() {
   // Search & Profile Dropdown states
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [headerSearchQuery, setHeaderSearchQuery] = useState('');
 
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -94,19 +97,19 @@ export function Header() {
   return (
     <header className="w-full bg-white text-[#111111] border-b border-gray-100 sticky top-0 z-50 font-sans">
       {/* Top Announcement Bar */}
-      <div className="border-b border-gray-100 py-2 px-4 text-xs text-gray-500 font-medium">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center gap-2">
-            <Phone size={13} className="text-gray-400" />
-            <span>For Emergency / Freight <strong className="text-[#111111] font-bold">(+250) 788 123 456</strong></span>
+      <div className="border-b border-gray-100 py-2 px-3 sm:px-4 text-xs text-gray-500 font-medium">
+        <div className="max-w-7xl mx-auto flex justify-between items-center gap-2">
+          <div className="flex items-center gap-1.5 text-[11px] sm:text-xs">
+            <Phone size={13} className="text-gray-400 shrink-0" />
+            <span className="truncate">Emergency Hotline: <strong className="text-[#111111] font-bold">(+250) 788 123 456</strong></span>
           </div>
 
           <div className="hidden lg:block text-center text-gray-600">
             1st Time Buyer? Use Promocode <strong className="bg-black text-white px-2 py-0.5 font-bold">MAGIC10</strong> For 10% OFF!
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 text-gray-500">
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <div className="hidden md:flex items-center gap-1.5 text-gray-500">
               <Clock size={13} />
               <span>FREIGHT PROTOCOL: <strong className="text-[#111111]">KGL ✈ YYZ Direct Flight Active</strong></span>
             </div>
@@ -114,7 +117,7 @@ export function Header() {
             {/* Currency Switcher */}
             <button
               onClick={() => setCurrency(currency === 'CAD' ? 'RWF' : 'CAD')}
-              className="bg-gray-100 hover:bg-gray-200 text-[#111111] px-2.5 py-0.5 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer"
+              className="bg-gray-100 hover:bg-gray-200 text-[#111111] px-2 py-0.5 rounded text-[11px] font-bold transition flex items-center gap-1 cursor-pointer"
             >
               <Globe size={11} />
               <span>{mounted ? (currency === 'CAD' ? 'CAD ($)' : 'RWF') : 'CAD ($)'}</span>
@@ -124,17 +127,17 @@ export function Header() {
       </div>
 
       {/* Main Header Menu Row */}
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-4 flex items-center justify-between gap-4 relative">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-2 sm:gap-4 relative">
         {/* Magic Link Logo */}
-        <Link href="/" className="flex items-center gap-3 group shrink-0">
-          <div className="w-10 h-10 rounded-xl overflow-hidden border border-gray-200 shrink-0 shadow-xs group-hover:scale-105 transition">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 shadow-xs group-hover:scale-105 transition">
             <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
           </div>
-          <div>
-            <div className="font-black text-2xl tracking-tight text-[#111111] font-retro-heading flex items-center gap-1">
+          <div className="hidden sm:block min-w-0">
+            <div className="font-black text-xl lg:text-2xl tracking-tight text-[#111111] font-retro-heading flex items-center gap-1 truncate">
               MAGIC LINK
             </div>
-            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Cross-Border E-Commerce & Freight</p>
+            <p className="text-[9px] lg:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">Cross-Border E-Commerce & Freight</p>
           </div>
         </Link>
 
@@ -300,8 +303,137 @@ export function Header() {
               </span>
             )}
           </button>
+
+          {/* Mobile Hamburger Navigation Button */}
+          <button
+            onClick={() => setIsMobileNavOpen(true)}
+            className="md:hidden text-black hover:text-gray-600 p-1 transition cursor-pointer"
+            title="Open Mobile Navigation Menu"
+          >
+            <Menu size={22} />
+          </button>
         </div>
       </div>
+
+      {/* MOBILE STOREFRONT NAVIGATION DRAWER */}
+      {isMobileNavOpen && (
+        <div className="fixed inset-0 z-50 md:hidden font-sans">
+          <div
+            onClick={() => setIsMobileNavOpen(false)}
+            className="absolute inset-0 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+          />
+
+          <div className="fixed inset-y-0 right-0 w-4/5 max-w-xs bg-white shadow-2xl z-50 p-6 flex flex-col justify-between space-y-8 animate-in slide-in-from-right duration-300 overflow-y-auto">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+                <Link href="/" onClick={() => setIsMobileNavOpen(false)} className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 shadow-xs">
+                    <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+                  </div>
+                  <span className="font-black text-lg text-black font-retro-heading">MAGIC LINK</span>
+                </Link>
+                <button
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className="p-1 text-gray-500 hover:text-black rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="space-y-2">
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-3 mb-1 font-mono">Navigation</p>
+                <Link
+                  href="/"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold transition ${
+                    pathname === '/' ? 'bg-black text-white' : 'text-gray-800 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>Home</span>
+                  <ChevronRight size={16} className="opacity-60" />
+                </Link>
+                <Link
+                  href="/products"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold transition ${
+                    pathname === '/products' ? 'bg-black text-white' : 'text-gray-800 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>Shop Catalog</span>
+                  <ChevronRight size={16} className="opacity-60" />
+                </Link>
+                <Link
+                  href="/about"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold transition ${
+                    pathname === '/about' ? 'bg-black text-white' : 'text-gray-800 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>About Us</span>
+                  <ChevronRight size={16} className="opacity-60" />
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold transition ${
+                    pathname === '/contact' ? 'bg-black text-white' : 'text-gray-800 hover:bg-gray-100'
+                  }`}
+                >
+                  <span>Contact</span>
+                  <ChevronRight size={16} className="opacity-60" />
+                </Link>
+              </nav>
+
+              {/* Account / Dashboard Links */}
+              {user ? (
+                <div className="space-y-2 pt-4 border-t border-gray-100">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-3 mb-1 font-mono">Account Portal</p>
+                  <Link
+                    href={getDashboardRoute()}
+                    onClick={() => setIsMobileNavOpen(false)}
+                    className="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gray-100 text-black text-xs font-bold hover:bg-gray-200 transition"
+                  >
+                    <span className="flex items-center gap-2">
+                      <LayoutDashboard size={16} /> My Dashboard Portal
+                    </span>
+                    <ChevronRight size={14} className="text-gray-400" />
+                  </Link>
+                </div>
+              ) : (
+                <div className="pt-4 border-t border-gray-100 space-y-2">
+                  <Link
+                    href="/login"
+                    onClick={() => setIsMobileNavOpen(false)}
+                    className="w-full flex items-center justify-center gap-2 bg-black text-white py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition"
+                  >
+                    <User size={16} /> Sign In Account
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Currency & Emergency Info */}
+            <div className="pt-4 border-t border-gray-100 space-y-3">
+              <div className="flex items-center justify-between bg-gray-50 p-3 rounded-xl">
+                <span className="text-xs font-bold text-gray-600">Active Currency:</span>
+                <button
+                  onClick={() => setCurrency(currency === 'CAD' ? 'RWF' : 'CAD')}
+                  className="bg-black text-white px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                >
+                  <Globe size={12} />
+                  <span>{currency === 'CAD' ? 'CAD ($)' : 'RWF'}</span>
+                </button>
+              </div>
+
+              <div className="text-[11px] text-gray-500 space-y-1 text-center font-medium">
+                <div>Emergency Helpline: <strong className="text-black font-bold">(+250) 788 123 456</strong></div>
+                <div className="text-[10px] text-gray-400">KGL ✈ YYZ Freight Corridor Active</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

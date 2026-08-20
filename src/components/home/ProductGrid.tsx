@@ -60,22 +60,22 @@ export function ProductGrid({ products, selectedCategory, onSelectCategory }: Pr
           <p className="text-sm text-gray-600 font-medium font-sans">Verified cross-border exports directly from Rwanda cooperatives & Canadian hubs.</p>
 
           {/* Corridor Filter Toggle */}
-          <div className="flex justify-center items-center gap-2 pt-4">
+          <div className="flex flex-wrap justify-center items-center gap-2 pt-4">
             <button
               onClick={() => setCorridorFilter('all')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'all' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'all' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
             >
               All Corridors
             </button>
             <button
               onClick={() => setCorridorFilter('KGL_YYZ')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'KGL_YYZ' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'KGL_YYZ' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
             >
               🇷🇼 KGL ✈ YYZ 🇨🇦
             </button>
             <button
               onClick={() => setCorridorFilter('YYZ_KGL')}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'YYZ_KGL' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'YYZ_KGL' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
             >
               🇨🇦 YYZ ✈ KGL 🇷🇼
             </button>

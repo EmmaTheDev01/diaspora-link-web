@@ -17,6 +17,7 @@ import {
   X,
   Package,
   FileText,
+  Menu,
 } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { dbService } from '@/services/db';
@@ -59,6 +60,7 @@ export function DashboardLayout({
   }>({ products: [], orders: [], menuMatches: [] });
 
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
 
@@ -131,12 +133,12 @@ export function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-[#F8F8F8] text-[#111111] font-sans flex flex-col lg:flex-row">
-      {/* LEFT SIDEBAR NAVIGATION */}
-      <aside className="w-full lg:w-64 bg-white border-r border-gray-200 shrink-0 p-6 flex flex-col justify-between space-y-8">
+      {/* DESKTOP SIDEBAR NAVIGATION */}
+      <aside className="hidden lg:flex w-64 bg-white border-r border-gray-200 shrink-0 p-6 flex-col justify-between space-y-8 sticky top-0 h-screen overflow-y-auto">
         <div className="space-y-8">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden border border-gray-200 shrink-0 shadow-xs">
+            <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-xs">
               <img src="/icon.png" alt="Magic Link" className="w-full h-full object-cover" />
             </div>
             <div>
@@ -192,13 +194,103 @@ export function DashboardLayout({
         </div>
       </aside>
 
+      {/* MOBILE SIDEBAR DRAWER OVERLAY */}
+      {isMobileSidebarOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden font-sans">
+          <div
+            onClick={() => setIsMobileSidebarOpen(false)}
+            className="absolute inset-0 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+          />
+          <aside className="fixed inset-y-0 left-0 w-4/5 max-w-xs bg-white shadow-2xl z-50 p-6 flex flex-col justify-between space-y-8 animate-in slide-in-from-left duration-300 overflow-y-auto">
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <Link href="/" onClick={() => setIsMobileSidebarOpen(false)} className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-xs">
+                    <img src="/icon.png" alt="Magic Link" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <div className="font-black text-lg tracking-tight text-[#111111] font-retro-heading">
+                      MAGIC LINK
+                    </div>
+                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Dashboard Portal</p>
+                  </div>
+                </Link>
+                <button
+                  onClick={() => setIsMobileSidebarOpen(false)}
+                  className="p-1.5 text-gray-500 hover:text-black rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <nav className="space-y-1">
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-3 mb-2 whitespace-nowrap">Main Menu</p>
+                {menuItems.map((item) => {
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setIsMobileSidebarOpen(false);
+                      }}
+                      className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-bold transition cursor-pointer text-left ${
+                        isActive
+                          ? 'bg-black text-white shadow-sm'
+                          : 'text-gray-700 hover:bg-gray-100 hover:text-black'
+                      }`}
+                    >
+                      <span className={`shrink-0 ${isActive ? 'text-white' : 'text-gray-500'}`}>{item.icon}</span>
+                      <span className="flex-1 whitespace-nowrap truncate">{item.label}</span>
+                      {isActive && <ChevronRight size={14} className="text-white opacity-80 shrink-0" />}
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+
+            <div className="pt-4 border-t border-gray-100 space-y-3">
+              <Link
+                href="/products"
+                onClick={() => setIsMobileSidebarOpen(false)}
+                className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 text-xs font-bold text-black transition"
+              >
+                <span className="flex items-center gap-2 whitespace-nowrap truncate">
+                  <ShoppingBag size={15} className="shrink-0" /> Storefront Catalog
+                </span>
+                <ChevronRight size={14} className="text-gray-400 shrink-0" />
+              </Link>
+
+              <button
+                onClick={() => {
+                  setIsMobileSidebarOpen(false);
+                  logout();
+                }}
+                className="w-full flex items-center gap-2 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-600 hover:text-red-600 hover:bg-red-50 transition cursor-pointer whitespace-nowrap truncate"
+              >
+                <LogOut size={15} className="shrink-0" /> Sign Out Account
+              </button>
+            </div>
+          </aside>
+        </div>
+      )}
+
       {/* RIGHT MAIN CONTENT AREA */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* TOP SEARCH & HEADER BAR */}
-        <header className="bg-white border-b border-gray-200 py-4 px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-30">
-          <div className="min-w-0">
-            <h1 className="text-2xl font-black text-[#111111] font-retro-heading uppercase">{title}</h1>
-            <p className="text-xs text-gray-500 font-medium">{subtitle}</p>
+        <header className="bg-white border-b border-gray-200 py-4 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 sticky top-0 z-30">
+          <div className="flex items-center gap-3 min-w-0">
+            <button
+              onClick={() => setIsMobileSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-black cursor-pointer transition shrink-0"
+              title="Open Navigation Menu"
+            >
+              <Menu size={20} />
+            </button>
+            <div className="min-w-0">
+              <h1 className="text-lg sm:text-2xl font-black text-[#111111] font-retro-heading uppercase truncate">{title}</h1>
+              <p className="text-xs text-gray-500 font-medium truncate">{subtitle}</p>
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
@@ -443,7 +535,7 @@ export function DashboardLayout({
         </header>
 
         {/* DASHBOARD PAGE CONTENT */}
-        <main className="p-6 lg:p-8 space-y-8 flex-1">
+        <main className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 flex-1 min-w-0 overflow-x-hidden">
           {children}
         </main>
       </div>

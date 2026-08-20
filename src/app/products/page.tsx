@@ -102,12 +102,8 @@ function ShopCatalogContent() {
 
   return (
     <main className="w-full min-h-screen bg-white text-[#111111] font-sans flex flex-col lg:flex-row">
-      {/* EDGE-TO-EDGE FULL HEIGHT SIDEBAR WITH RIGHT BORDER ONLY */}
-      <aside
-        className={`w-full lg:w-80 bg-white border-r border-gray-200 shrink-0 p-6 space-y-6 min-h-screen ${
-          isMobileFilterOpen ? 'block' : 'hidden lg:block'
-        }`}
-      >
+      {/* DESKTOP SIDEBAR FILTERS */}
+      <aside className="hidden lg:block lg:w-80 bg-white border-r border-gray-200 shrink-0 p-6 space-y-6 min-h-screen">
         <div className="flex justify-between items-center pb-4 border-b border-gray-100">
           <h3 className="font-bold text-base text-black font-retro-heading flex items-center gap-2">
             <Filter size={18} /> Filters
@@ -222,6 +218,133 @@ function ShopCatalogContent() {
           </label>
         </div>
       </aside>
+
+      {/* MOBILE FILTER DRAWER OVERLAY */}
+      {isMobileFilterOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden font-sans">
+          <div
+            onClick={() => setIsMobileFilterOpen(false)}
+            className="absolute inset-0 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200"
+          />
+
+          <aside className="fixed inset-y-0 left-0 w-4/5 max-w-xs bg-white shadow-2xl z-50 p-6 flex flex-col justify-between space-y-6 animate-in slide-in-from-left duration-300 overflow-y-auto">
+            <div className="space-y-6">
+              <div className="flex justify-between items-center pb-4 border-b border-gray-100">
+                <h3 className="font-bold text-base text-black font-retro-heading flex items-center gap-2">
+                  <Filter size={18} /> Filters
+                </h3>
+                <button
+                  onClick={() => setIsMobileFilterOpen(false)}
+                  className="p-1 text-gray-500 hover:text-black rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Keyword Search */}
+              <div className="space-y-2">
+                <label className="font-bold text-xs uppercase tracking-wider text-black block">Keyword Search</label>
+                <div className="relative">
+                  <Search size={16} className="absolute left-3.5 top-3.5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search coffee, tea, crafts..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-3 py-3 bg-gray-50 rounded-xl text-xs font-bold focus:outline-none focus:bg-gray-100"
+                  />
+                </div>
+              </div>
+
+              {/* Categories */}
+              <div className="space-y-2">
+                <label className="font-bold text-xs uppercase tracking-wider text-black block">Product Category</label>
+                <div className="space-y-1 text-xs font-medium">
+                  {[
+                    { id: 'all', label: 'All Categories', icon: <ShoppingBag size={15} /> },
+                    { id: 'coffee_tea', label: 'Coffee & Tea', icon: <Coffee size={15} /> },
+                    { id: 'crafts', label: 'Handcrafts & Art', icon: <Palette size={15} /> },
+                    { id: 'gifts', label: 'Gifts & Spices', icon: <Gift size={15} /> },
+                    { id: 'decor', label: 'Home Decor', icon: <HomeIcon size={15} /> },
+                  ].map((cat) => {
+                    const isActive = selectedCategory === cat.id;
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => setSelectedCategory(cat.id)}
+                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition font-bold cursor-pointer text-left ${
+                          isActive ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        <span className={isActive ? 'text-white' : 'text-gray-500'}>{cat.icon}</span>
+                        <span className="flex-1">{cat.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Trade Corridor Route */}
+              <div className="space-y-2">
+                <label className="font-bold text-xs uppercase tracking-wider text-black block">Trade Corridor Route</label>
+                <select
+                  value={selectedCorridor}
+                  onChange={(e) => setSelectedCorridor(e.target.value)}
+                  className="w-full p-3 bg-gray-50 rounded-xl text-xs font-bold uppercase text-black cursor-pointer focus:outline-none"
+                >
+                  <option value="all">All Trade Corridors</option>
+                  <option value="KGL_YYZ">KGL ✈ YYZ (Rwanda Export)</option>
+                  <option value="YYZ_KGL">YYZ ✈ KGL (Canada Import)</option>
+                </select>
+              </div>
+
+              {/* Price Range */}
+              <div className="space-y-2">
+                <label className="font-bold text-xs uppercase tracking-wider text-black block">Price Range (CAD $)</label>
+                <div className="space-y-1 text-xs font-medium">
+                  {[
+                    { id: 'all', label: 'All Prices' },
+                    { id: 'under30', label: 'Under $30 CAD' },
+                    { id: '30to60', label: '$30 - $60 CAD' },
+                    { id: 'over60', label: 'Over $60 CAD' },
+                  ].map((p) => {
+                    const isActive = priceRange === p.id;
+                    return (
+                      <button
+                        key={p.id}
+                        onClick={() => setPriceRange(p.id as any)}
+                        className={`w-full text-left px-3 py-2.5 rounded-xl transition font-bold cursor-pointer ${
+                          isActive ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'
+                        }`}
+                      >
+                        {p.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-gray-100 space-y-2">
+              <button
+                onClick={() => setIsMobileFilterOpen(false)}
+                className="w-full bg-black text-white font-bold py-3 rounded-xl text-xs uppercase tracking-wider cursor-pointer"
+              >
+                Apply Filters ({sortedProducts.length})
+              </button>
+              <button
+                onClick={() => {
+                  resetFilters();
+                  setIsMobileFilterOpen(false);
+                }}
+                className="w-full text-xs font-bold text-gray-500 py-2 hover:text-black transition cursor-pointer"
+              >
+                Reset All Filters
+              </button>
+            </div>
+          </aside>
+        </div>
+      )}
 
       {/* RIGHT MAIN CONTENT AREA: 4 CARDS PER ROW GRID WITH NO ADD TO CART BUTTON */}
       <div className="flex-1 p-6 lg:p-10 space-y-8 bg-white min-w-0">

@@ -55,26 +55,26 @@ export function HeroArea() {
     <section className="py-8 px-4 lg:px-8 max-w-7xl mx-auto font-sans">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Main Hero Banner (Left 8/12 - Dynamic Slider) */}
-        <div className={`lg:col-span-8 relative rounded-3xl ${slide.bgColor} text-[#111111] p-8 lg:p-12 flex flex-col justify-between min-h-[520px] h-full overflow-hidden group shadow-xs transition-colors duration-500`}>
+        <div className={`lg:col-span-8 relative rounded-3xl ${slide.bgColor} text-[#111111] p-6 sm:p-8 lg:p-12 flex flex-col justify-between min-h-[420px] sm:min-h-[520px] h-full overflow-hidden group shadow-xs transition-colors duration-500`}>
           <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center relative z-10 my-auto">
             {/* Left 7 cols: Content Container */}
-            <div className="sm:col-span-7 space-y-5">
+            <div className="sm:col-span-7 space-y-4 sm:space-y-5">
               {/* Pill Tags */}
               <div className="flex items-center gap-2">
-                <span className="bg-white text-black text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono">
+                <span className="bg-white text-black text-[11px] sm:text-xs font-bold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono">
                   {slide.tag1}
                 </span>
-                <span className="bg-black text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono">
+                <span className="bg-black text-white text-[11px] sm:text-xs font-bold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono">
                   {slide.tag2}
                 </span>
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-3xl lg:text-5xl font-black tracking-tight text-[#111111] leading-tight font-retro-heading">
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black tracking-tight text-[#111111] leading-tight font-retro-heading">
                 {slide.title}
               </h1>
 
-              <p className="text-gray-700 text-sm leading-relaxed font-medium">
+              <p className="text-gray-700 text-xs sm:text-sm leading-relaxed font-medium">
                 {slide.subtitle}
               </p>
 

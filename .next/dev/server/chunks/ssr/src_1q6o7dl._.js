@@ -148,19 +148,20 @@ function CategoriesSection({ selectedCategory, onSelectCategory }) {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex-1 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-6 text-center",
+                    className: "flex-1 flex overflow-x-auto no-scrollbar sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-4 sm:gap-6 text-center py-2 px-1 snap-x snap-mandatory",
                     children: CATEGORIES.map((cat)=>{
                         const IconComponent = cat.icon;
                         const isSelected = selectedCategory === cat.id;
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: ()=>onSelectCategory?.(isSelected ? '' : cat.id),
-                            className: "flex flex-col items-center gap-3 group cursor-pointer",
+                            className: "flex flex-col items-center gap-2 sm:gap-3 group cursor-pointer shrink-0 snap-center min-w-[85px] sm:min-w-0",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: `w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition duration-300 ${isSelected ? 'bg-black text-white shadow-md scale-105' : 'bg-[#F2F2F2] text-[#111111] hover:bg-black hover:text-white hover:scale-105'}`,
+                                    className: `w-16 h-16 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition duration-300 ${isSelected ? 'bg-black text-white shadow-md scale-105' : 'bg-[#F2F2F2] text-[#111111] hover:bg-black hover:text-white hover:scale-105'}`,
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(IconComponent, {
-                                        size: 28,
-                                        strokeWidth: 1.5
+                                        size: 24,
+                                        strokeWidth: 1.5,
+                                        className: "sm:w-7 sm:h-7"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/home/CategoriesSection.tsx",
                                         lineNumber: 51,
@@ -172,7 +173,7 @@ function CategoriesSection({ selectedCategory, onSelectCategory }) {
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: `text-xs font-bold transition ${isSelected ? 'text-black underline' : 'text-black group-hover:text-black'}`,
+                                    className: `text-[11px] sm:text-xs font-bold transition whitespace-nowrap ${isSelected ? 'text-black underline' : 'text-black group-hover:text-black'}`,
                                     children: cat.label
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/home/CategoriesSection.tsx",
@@ -518,19 +519,19 @@ function HeroArea() {
             className: "grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: `lg:col-span-8 relative rounded-3xl ${slide.bgColor} text-[#111111] p-8 lg:p-12 flex flex-col justify-between min-h-[520px] h-full overflow-hidden group shadow-xs transition-colors duration-500`,
+                    className: `lg:col-span-8 relative rounded-3xl ${slide.bgColor} text-[#111111] p-6 sm:p-8 lg:p-12 flex flex-col justify-between min-h-[420px] sm:min-h-[520px] h-full overflow-hidden group shadow-xs transition-colors duration-500`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "grid grid-cols-1 sm:grid-cols-12 gap-6 items-center relative z-10 my-auto",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "sm:col-span-7 space-y-5",
+                                    className: "sm:col-span-7 space-y-4 sm:space-y-5",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex items-center gap-2",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "bg-white text-black text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono",
+                                                    className: "bg-white text-black text-[11px] sm:text-xs font-bold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono",
                                                     children: slide.tag1
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/home/HeroArea.tsx",
@@ -538,7 +539,7 @@ function HeroArea() {
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "bg-black text-white text-xs font-bold px-3.5 py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono",
+                                                    className: "bg-black text-white text-[11px] sm:text-xs font-bold px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-xs uppercase tracking-wider font-mono",
                                                     children: slide.tag2
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/home/HeroArea.tsx",
@@ -552,7 +553,7 @@ function HeroArea() {
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                            className: "text-3xl lg:text-5xl font-black tracking-tight text-[#111111] leading-tight font-retro-heading",
+                                            className: "text-2xl sm:text-3xl lg:text-5xl font-black tracking-tight text-[#111111] leading-tight font-retro-heading",
                                             children: slide.title
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/home/HeroArea.tsx",
@@ -560,7 +561,7 @@ function HeroArea() {
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-gray-700 text-sm leading-relaxed font-medium",
+                                            className: "text-gray-700 text-xs sm:text-sm leading-relaxed font-medium",
                                             children: slide.subtitle
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/home/HeroArea.tsx",
@@ -974,11 +975,11 @@ function ProductGrid({ products, selectedCategory, onSelectCategory }) {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-center items-center gap-2 pt-4",
+                                className: "flex flex-wrap justify-center items-center gap-2 pt-4",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setCorridorFilter('all'),
-                                        className: `px-4 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'all' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`,
+                                        className: `px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'all' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`,
                                         children: "All Corridors"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/home/ProductGrid.tsx",
@@ -987,7 +988,7 @@ function ProductGrid({ products, selectedCategory, onSelectCategory }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setCorridorFilter('KGL_YYZ'),
-                                        className: `px-4 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'KGL_YYZ' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`,
+                                        className: `px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'KGL_YYZ' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`,
                                         children: "🇷🇼 KGL ✈ YYZ 🇨🇦"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/home/ProductGrid.tsx",
@@ -996,7 +997,7 @@ function ProductGrid({ products, selectedCategory, onSelectCategory }) {
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setCorridorFilter('YYZ_KGL'),
-                                        className: `px-4 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'YYZ_KGL' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`,
+                                        className: `px-3.5 py-1.5 rounded-full text-xs font-bold transition cursor-pointer ${corridorFilter === 'YYZ_KGL' ? 'bg-black text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`,
                                         children: "🇨🇦 YYZ ✈ KGL 🇷🇼"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/home/ProductGrid.tsx",
