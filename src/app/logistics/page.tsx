@@ -7,7 +7,7 @@ import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
 import { CourierCapacityChart } from '@/components/charts/CourierCapacityChart';
 import { Plane, Plus, Luggage, X, ShieldCheck, User, Settings, CreditCard } from 'lucide-react';
 
-import { StatCardSkeleton } from '@/components/common/Skeleton';
+import { StatCardSkeleton, TableRowSkeleton } from '@/components/common/Skeleton';
 
 export default function LogisticsPage() {
   const { user, currency } = useAuthStore();

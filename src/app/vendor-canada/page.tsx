@@ -246,7 +246,7 @@ export default function VendorCanadaPage() {
     setTitle('');
     setPriceCad(35.0);
     setPriceRwf(43000);
-    setCategory('general');
+    setCategory('crafts');
     setDescription('');
     setStockQuantity(100);
     setImageUrl('');
