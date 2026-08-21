@@ -13,7 +13,9 @@ export function AuthModal() {
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
   const [taxId, setTaxId] = useState('');
+  const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   if (!isAuthModalOpen) return null;
 
@@ -62,22 +64,23 @@ export function AuthModal() {
 
         <div className="text-center space-y-2 mb-6">
           <div className="w-12 h-12 rounded-xl overflow-hidden border border-gray-200 mx-auto shadow-xs">
-            <img src="/icon.png" alt="Magic Link" className="w-full h-full object-cover" />
+            <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-cover" />
           </div>
-          <h3 className="text-2xl font-black text-[#111111] font-retro-heading uppercase tracking-tight">Magic Link Authentication</h3>
-          <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Cross-Border E-Commerce & Freight Protocol</p>
+          <h3 className="text-2xl font-black text-[#111111] font-retro-heading uppercase tracking-tight">Nile Express Cargo</h3>
+          <p className="text-xs text-gray-500 font-bold uppercase tracking-wider">Canada ✈ East Africa Freight Logistics</p>
+
         </div>
 
         <div className="flex bg-gray-100 p-1 rounded-xl mb-6 text-xs font-bold uppercase">
           <button
             onClick={() => setTab('login')}
-            className={`flex-1 py-2.5 rounded-lg transition cursor-pointer ${tab === 'login' ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-200'}`}
+            className={`flex-1 py-2.5 rounded-lg transition cursor-pointer ${tab === 'login' ? 'bg-[#014485] text-white' : 'text-gray-700 hover:bg-gray-200'}`}
           >
             Sign In
           </button>
           <button
             onClick={() => setTab('register')}
-            className={`flex-1 py-2.5 rounded-lg transition cursor-pointer ${tab === 'register' ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-200'}`}
+            className={`flex-1 py-2.5 rounded-lg transition cursor-pointer ${tab === 'register' ? 'bg-[#014485] text-white' : 'text-gray-700 hover:bg-gray-200'}`}
           >
             Create Account
           </button>
@@ -95,7 +98,7 @@ export function AuthModal() {
                   placeholder="Grace Mutoni or Gishwati Coop"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg font-bold text-sm focus:outline-none focus:border-black"
+                  className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg font-bold text-sm focus:outline-none focus:border-[#014485]"
                 />
               </div>
             </div>
@@ -108,33 +111,49 @@ export function AuthModal() {
               <input
                 type="email"
                 required
-                placeholder="name@diasporalink.com"
+                placeholder="you@domain.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg font-bold text-sm focus:outline-none focus:border-black"
+                className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg font-bold text-sm focus:outline-none focus:border-[#014485]"
               />
             </div>
           </div>
 
           <div>
-            <label className="font-bold text-[#111111] uppercase tracking-wider block mb-1">Select Account Role</label>
-            <select
-              value={role}
-              onChange={(e) => setRole(e.target.value as UserRole)}
-              className="w-full p-3 bg-gray-50 border border-gray-300 rounded-lg font-bold text-xs uppercase focus:outline-none focus:border-black text-[#111111]"
-            >
-              <option value="buyer">🛍️ Buyer / Shopper (Diaspora)</option>
-              <option value="vendor_rwanda">🇷🇼 Exporter (Rwanda Cooperative)</option>
-              <option value="vendor_canada">🇨🇦 Importer (Canada Business)</option>
-              <option value="logistics_courier">✈️ Air Courier (Luggage Traveler)</option>
-              <option value="admin">🛡️ System Administrator</option>
-            </select>
+            <label className="font-bold text-[#111111] uppercase tracking-wider block mb-1">Password</label>
+            <div className="relative">
+              <Lock size={16} className="absolute left-3 top-3 text-gray-400" />
+              <input
+                type="password"
+                required
+                placeholder="••••••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg font-bold text-sm focus:outline-none focus:border-[#014485]"
+              />
+            </div>
           </div>
 
-          {tab === 'register' && role !== 'buyer' && role !== 'admin' && (
+          {tab === 'register' && (
+            <div>
+              <label className="font-bold text-[#111111] uppercase tracking-wider block mb-1">Account Role Profile</label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value as any)}
+                className="w-full p-2.5 bg-gray-50 border border-gray-300 rounded-lg font-bold text-sm"
+              >
+                <option value="buyer">Diaspora Buyer (Canada / Worldwide)</option>
+                <option value="vendor_rwanda">Rwanda Exporter / Cooperative (RDB Verified)</option>
+                <option value="vendor_canada">Canada Importer / Distributor (CRA Verified)</option>
+                <option value="logistics_courier">Air Courier (Flight Baggage Monetization)</option>
+              </select>
+            </div>
+          )}
+
+          {(role === 'vendor_rwanda' || role === 'vendor_canada') && tab === 'register' && (
             <div>
               <label className="font-bold text-[#111111] uppercase tracking-wider block mb-1">
-                {role === 'vendor_rwanda' ? 'RDB TIN Number' : role === 'vendor_canada' ? 'CRA Business Number' : 'Flight Ticket PNR'}
+                {role === 'vendor_rwanda' ? 'RDB TIN Number *' : 'CRA Business Number (BN) *'}
               </label>
               <input
                 type="text"
@@ -150,7 +169,7 @@ export function AuthModal() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-black hover:bg-gray-800 text-white font-bold py-3.5 rounded-xl uppercase tracking-widest transition flex items-center justify-center gap-2 text-xs cursor-pointer shadow-md mt-2 disabled:opacity-50"
+            className="w-full bg-[#014485] hover:bg-[#013467] text-white font-bold py-3.5 rounded-xl uppercase tracking-widest transition flex items-center justify-center gap-2 text-xs cursor-pointer shadow-md mt-2 disabled:opacity-50"
           >
             <span>{isSubmitting ? 'Authenticating...' : tab === 'login' ? 'Sign In & Launch Dashboard' : 'Submit Account Registration'}</span>
             <ChevronRight size={16} />

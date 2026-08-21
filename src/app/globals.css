@@ -3,6 +3,10 @@
 @layer base {
   :root {
     --font-poppins: 'Poppins', sans-serif;
+    --primary: #014485;
+    --primary-hover: #013467;
+    --secondary: #17993b;
+    --secondary-hover: #127a2e;
     --retro-blue: #E3F6FA;    /* Soft pastel sky blue (Hero) */
     --retro-beige: #F7F2EC;   /* Soft warm beige/cream (Side banner 1) */
     --retro-purple: #ECEEFA;  /* Soft lavender/purple (Side banner 2) */
@@ -20,12 +24,24 @@
   }
 }
 
-/* Magic Link Poppins Typography */
+/* Nile Express Cargo Color Utilities */
+.bg-primary { background-color: #014485; }
+.bg-primary-hover:hover { background-color: #013467; }
+.text-primary { color: #014485; }
+.border-primary { border-color: #014485; }
+
+.bg-secondary { background-color: #17993b; }
+.bg-secondary-hover:hover { background-color: #127a2e; }
+.text-secondary { color: #17993b; }
+.border-secondary { border-color: #17993b; }
+
+/* Nile Express Cargo Poppins Typography */
 .font-retro-heading {
   font-family: var(--font-poppins), 'Poppins', sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
+
 
 .retro-hero-bg {
   background-color: #E3F6FA;

@@ -139,11 +139,18 @@ export interface CarrierTrip {
   id: string;
   courier_id: string;
   courier_name: string;
+  courier_phone?: string;
+  courier_whatsapp?: string;
+  courier_email?: string;
   flight_number: string;
   airline: string;
-  departure_airport: 'KGL' | 'YYZ';
-  arrival_airport: 'KGL' | 'YYZ';
+  departure_airport: string;
+  arrival_airport: string;
   departure_date: string;
+  boarding_time?: string;
+  landing_time?: string;
+  flight_duration_hours?: number;
+  itinerary_notes?: string;
   total_capacity_kg: number;
   available_capacity_kg: number;
   rate_per_kg_cad: number;
@@ -151,6 +158,7 @@ export interface CarrierTrip {
   status: 'listed' | 'fully_booked' | 'in_flight' | 'completed';
   created_at: string;
 }
+
 
 export interface ShipmentMilestone {
   id: string;
@@ -197,3 +205,97 @@ export interface EscrowAccount {
   released_at?: string;
   created_at: string;
 }
+
+export type CargoStageCode =
+  | '01_BOOK'
+  | '02_COLLECT'
+  | '03_CONSOLIDATE'
+  | '04_FLY'
+  | '05_CLEAR'
+  | '06_DELIVER';
+
+export type CargoType =
+  | 'personal_effects'
+  | 'household_items'
+  | 'commercial_goods'
+  | 'electronics'
+  | 'apparel'
+  | 'gifts'
+  | 'documents';
+
+export interface PackageContentItem {
+  id: string;
+  name: string;
+  quantity: number;
+  weight_kg: number;
+  category: CargoType;
+  image?: string;
+}
+
+export interface CargoPackage {
+  id: string;
+  awb_number: string;
+  qr_seal_code: string;
+  barcode_id: string;
+  description: string;
+  cargo_type: CargoType;
+  
+  // Sender Contact & Official Identification
+  sender_id_type: 'passport' | 'national_id' | 'drivers_license';
+  sender_id_number: string;
+  sender: {
+    full_name: string;
+    email: string;
+    phone: string;
+    city: string;
+    country: string;
+    address: string;
+  };
+  
+  // Receiver Contact & Destination
+  receiver: {
+    full_name: string;
+    phone: string;
+    whatsapp: string;
+    delivery_address: string;
+    city: string;
+    country: string;
+  };
+  
+  // Itemized Contents List
+  items: PackageContentItem[];
+  
+  // Assigned Courier Flight & Trip
+  courier_id?: string;
+  courier_name?: string;
+  carrier_trip_id?: string;
+  flight_number?: string;
+  
+  // Physical Specs & Rates
+  weight_kg: number;
+  dimensions: {
+    length_cm: number;
+    width_cm: number;
+    height_cm: number;
+  };
+  declared_value_cad: number;
+  rate_per_kg_cad: number;
+  pickup_fee_cad: number;
+  total_cost_cad: number;
+  total_cost_rwf: number;
+  
+  // Package Photos Array
+  images: string[];
+  
+  // Milestones & Logistics
+  current_stage: CargoStageCode;
+  stage_title: string;
+  milestones: ShipmentMilestone[];
+  transport_mode: 'Motorcycle' | 'Car' | 'Van' | 'Truck';
+  proof_of_delivery_pin?: string;
+  is_escrow_protected: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+

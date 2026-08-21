@@ -13,15 +13,16 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Magic Link | Cross-Border E-Commerce & Freight Logistics (KGL ↔ YYZ)',
-  description: 'Official Magic Link Web Application connecting Kigali, Rwanda and Toronto, Canada. Dual-currency shopping, 256-bit Escrow Vault lock, and air freight luggage logistics.',
-  keywords: ['Magic Link', 'Diaspora Link', 'Rwanda E-Commerce', 'Gishwati Tea', 'Kivu Coffee', 'Kigali Toronto Freight', 'RwandAir Luggage', 'Escrow Vault'],
+  title: 'Nile Express Cargo | Cross-Border E-Commerce & Freight Logistics (KGL ↔ YYZ)',
+  description: 'Official Nile Express Cargo Web Application connecting Kigali, Rwanda and Toronto, Canada. Dual-currency shopping, 256-bit Escrow Vault lock, and air freight luggage logistics.',
+  keywords: ['Nile Express Cargo', 'Nile Cargo', 'Diaspora Link', 'Rwanda E-Commerce', 'Gishwati Tea', 'Kivu Coffee', 'Kigali Toronto Freight', 'RwandAir Luggage', 'Escrow Vault'],
   icons: {
     icon: '/icon.png',
     shortcut: '/icon.png',
     apple: '/icon.png',
   },
 };
+
 
 export default function RootLayout({
   children,

@@ -281,10 +281,11 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-black hover:bg-gray-800 text-white font-bold py-4 rounded-xl uppercase tracking-widest text-xs transition cursor-pointer disabled:opacity-50 shadow-md"
+                className="w-full bg-[#014485] hover:bg-[#013467] text-white font-bold py-4 rounded-xl uppercase tracking-widest text-xs transition cursor-pointer disabled:opacity-50 shadow-md"
               >
                 <span>{isSubmitting ? 'Locking Escrow...' : 'Lock Escrow Vault & Place Order'}</span>
               </button>
+
             </div>
           </div>
         </form>

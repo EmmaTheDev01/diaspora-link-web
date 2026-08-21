@@ -62,9 +62,10 @@ export default function ForgotPasswordPage() {
           <div className="text-center space-y-3">
             <Link href="/" className="inline-block">
               <div className="w-14 h-14 rounded-2xl overflow-hidden border border-gray-200 mx-auto shadow-xs">
-                <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+                <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-cover" />
               </div>
             </Link>
+
             <h1 className="text-3xl lg:text-4xl font-black text-[#111111] font-retro-heading uppercase tracking-tight">
               Reset Your Password
             </h1>
@@ -110,10 +111,11 @@ export default function ForgotPasswordPage() {
 
               <button
                 type="submit"
-                className="w-full bg-black hover:bg-gray-800 text-white font-bold py-4 rounded-xl uppercase tracking-widest transition text-xs cursor-pointer shadow-md mt-2"
+                className="w-full bg-[#014485] hover:bg-[#013467] text-white font-bold py-4 rounded-xl uppercase tracking-widest transition text-xs cursor-pointer shadow-md mt-2"
               >
                 SEND RESET LINK
               </button>
+
             </form>
           )}
 

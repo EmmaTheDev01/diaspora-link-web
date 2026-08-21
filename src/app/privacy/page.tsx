@@ -15,7 +15,7 @@ export default function PrivacyPage() {
           Privacy Protocol
         </span>
         <h1 className="text-4xl lg:text-5xl font-black text-[#111111] font-retro-heading">Privacy Policy & Security Protocol</h1>
-        <p className="text-gray-500 text-sm font-medium">Effective Date: August 2026 • Magic Link Cross-Border Protocol</p>
+        <p className="text-gray-500 text-sm font-medium">Effective Date: August 2026 • Nile Express Cargo Cross-Border Protocol</p>
       </div>
 
       {/* Clean White Well-Proportioned Sections */}
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">1. PostgreSQL Database Access Security</h2>
           <p className="leading-loose">
-            Magic Link is engineered upon a multi-tenant PostgreSQL database architecture connecting Kigali, Rwanda (KGL) and Toronto, Canada (YYZ). Access controls are enforced natively at the database level across all data tables, including user profiles, order records, escrow holdings, flight trips, and active session devices. When users authenticate, their cryptographic session tokens ensure that buyers, exporters, importers, and air couriers can only read or modify records authorized for their verified identity profile.
+            Nile Express Cargo is engineered upon a multi-tenant PostgreSQL database architecture connecting Kigali, Rwanda (KGL) and Toronto, Canada (YYZ). Access controls are enforced natively at the database level across all data tables, including user profiles, order records, escrow holdings, flight trips, and active session devices. When users authenticate, their cryptographic session tokens ensure that buyers, exporters, importers, and air couriers can only read or modify records authorized for their verified identity profile.
           </p>
           <p className="leading-loose">
             This database-level security model prevents unauthorized cross-tenant data access and ensures that trade volumes, pricing structures, and private customer communications remain completely isolated and protected against external data harvesting.
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
             To operate an international trade and passenger air freight platform, we collect specific categories of personal data essential for customs clearance, delivery verification, and financial settlements. This includes full legal names, verified email addresses, mobile telephone numbers, delivery street addresses in Canada or Rwanda, passport identity references for couriers, and national business tax identifiers.
           </p>
           <p className="leading-loose">
-            Contact information is utilized strictly to send real-time Air Waybill (AWB) milestone updates, tamper-seal verification codes, and 256-bit Escrow Vault release PINs. Magic Link does not engage in behavioral advertising, third-party data brokerage, or tracking for marketing purposes.
+            Contact information is utilized strictly to send real-time Air Waybill (AWB) milestone updates, tamper-seal verification codes, and 256-bit Escrow Vault release PINs. Nile Express Cargo does not engage in behavioral advertising, third-party data brokerage, or tracking for marketing purposes.
           </p>
         </section>
 
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">5. Device Audit & Session Security Monitoring</h2>
           <p className="leading-loose">
-            To safeguard user accounts against unauthorized access, credential theft, and fraudulent payout attempts, Magic Link maintains automated security audit logs. When a user authenticates or triggers financial transactions, our system captures client IP addresses, browser types, operating systems, and geographic location data.
+            To safeguard user accounts against unauthorized access, credential theft, and fraudulent payout attempts, Nile Express Cargo maintains automated security audit logs. When a user authenticates or triggers financial transactions, our system captures client IP addresses, browser types, operating systems, and geographic location data.
           </p>
           <p className="leading-loose">
             Automated anomaly detection alerts administrators if login attempts occur from recognized threat locations outside established trade corridors. Users can inspect all active sessions within their security preferences and revoke unrecognized devices with a single click.
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">8. Essential Cookies & Session Preferences</h2>
           <p className="leading-loose">
-            Magic Link utilizes technical cookies and browser local storage strictly necessary for authentication state management, shopping cart persistence, and preferred currency display (CAD $ or RWF). Cookies ensure secure session state tokens without exposing sensitive credentials to client scripts.
+            Nile Express Cargo utilizes technical cookies and browser local storage strictly necessary for authentication state management, shopping cart persistence, and preferred currency display (CAD $ or RWF). Cookies ensure secure session state tokens without exposing sensitive credentials to client scripts.
           </p>
           <p className="leading-loose">
             We do not use third-party tracking pixels or behavioral advertising cookies. Disabling technical session cookies may prevent proper access to authenticated user dashboards and escrow confirmation features.
@@ -113,7 +113,7 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">10. Policy Updates & Data Protection Contact</h2>
           <p className="leading-loose">
-            Magic Link periodically updates this Privacy Policy & Security Protocol to reflect evolving international regulatory standards or platform enhancements. Material changes are communicated via account banners and updated revision dates.
+            Nile Express Cargo periodically updates this Privacy Policy & Security Protocol to reflect evolving international regulatory standards or platform enhancements. Material changes are communicated via account banners and updated revision dates.
           </p>
           <p className="leading-loose">
             For privacy questions or data subject access requests, contact our Data Protection Officer at <strong className="text-black font-mono">dpo@diasporalink.com</strong> or via physical mail at Kigali Cargo Hub 01, KG 7 Ave, Special Economic Zone, Kigali, Rwanda.

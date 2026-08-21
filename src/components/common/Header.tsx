@@ -18,7 +18,9 @@ import {
   LayoutDashboard,
   Package,
   Menu,
+  Plane,
 } from 'lucide-react';
+
 import { useAuthStore } from '../../store/useAuthStore';
 import { useCartStore } from '../../store/useCartStore';
 
@@ -105,14 +107,15 @@ export function Header() {
           </div>
 
           <div className="hidden lg:block text-center text-gray-600">
-            1st Time Buyer? Use Promocode <strong className="bg-black text-white px-2 py-0.5 font-bold">MAGIC10</strong> For 10% OFF!
+            1st Time Buyer? Use Promocode <strong className="bg-[#17993b] text-white px-2 py-0.5 font-bold">NILE10</strong> For 10% OFF!
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4 shrink-0">
             <div className="hidden md:flex items-center gap-1.5 text-gray-500">
               <Clock size={13} />
-              <span>FREIGHT PROTOCOL: <strong className="text-[#111111]">KGL ✈ YYZ Direct Flight Active</strong></span>
+              <span>FREIGHT PROTOCOL: <strong className="text-[#014485]">YYZ ✈ KGL Direct Flight Active</strong></span>
             </div>
+
 
             {/* Currency Switcher */}
             <button
@@ -128,34 +131,39 @@ export function Header() {
 
       {/* Main Header Menu Row */}
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between gap-2 sm:gap-4 relative">
-        {/* Magic Link Logo */}
+        {/* Nile Express Cargo Logo */}
         <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 shadow-xs group-hover:scale-105 transition">
-            <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden shrink-0 shadow-xs group-hover:scale-105 transition bg-white border border-gray-200 p-1">
+            <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-contain" />
           </div>
+
           <div className="hidden sm:block min-w-0">
-            <div className="font-black text-xl lg:text-2xl tracking-tight text-[#111111] font-retro-heading flex items-center gap-1 truncate">
-              MAGIC LINK
+            <div className="font-black text-xl lg:text-2xl tracking-tight text-[#111111] font-retro-heading flex items-center gap-1 truncate uppercase">
+              NILE EXPRESS CARGO
             </div>
-            <p className="text-[9px] lg:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">Cross-Border E-Commerce & Freight</p>
+            <p className="text-[9px] lg:text-[10px] text-gray-400 font-bold uppercase tracking-wider truncate">Canada ✈ East Africa Freight Logistics</p>
           </div>
         </Link>
 
+
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-bold text-[#111111]">
-          <Link href="/" className={`hover:text-gray-500 transition ${pathname === '/' ? 'text-black border-b-2 border-black pb-1' : ''}`}>
-            Home
+        <nav className="hidden md:flex items-center gap-6 text-xs font-black uppercase tracking-wider font-mono text-[#111111]">
+          <Link href="/" className={`hover:text-[#014485] transition ${pathname === '/' ? 'text-[#014485] border-b-2 border-[#014485] pb-1 font-black' : ''}`}>
+            Cargo Hub
           </Link>
-          <Link href="/products" className={`hover:text-gray-500 transition ${pathname === '/products' ? 'text-black border-b-2 border-black pb-1' : ''}`}>
-            Shop
+          <Link href="/products" className={`hover:text-[#014485] transition ${pathname === '/products' ? 'text-[#014485] border-b-2 border-[#014485] pb-1 font-black' : ''}`}>
+            Marketplace
           </Link>
-          <Link href="/about" className={`hover:text-gray-500 transition ${pathname === '/about' ? 'text-black border-b-2 border-black pb-1' : ''}`}>
+          <Link href="/about" className={`hover:text-[#014485] transition ${pathname === '/about' ? 'text-[#014485] border-b-2 border-[#014485] pb-1' : ''}`}>
             About
           </Link>
-          <Link href="/contact" className={`hover:text-gray-500 transition ${pathname === '/contact' ? 'text-black border-b-2 border-black pb-1' : ''}`}>
+          <Link href="/contact" className={`hover:text-[#014485] transition ${pathname === '/contact' ? 'text-[#014485] border-b-2 border-[#014485] pb-1' : ''}`}>
             Contact
           </Link>
         </nav>
+
+
+
 
         {/* Right Action Icons (Search, User Avatar Dropdown, Wishlist, Cart) */}
         <div className="flex items-center gap-5 text-[#111111] relative">
@@ -278,7 +286,7 @@ export function Header() {
           ) : (
             <Link
               href="/login"
-              className="flex items-center gap-1.5 bg-black hover:bg-gray-800 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer shadow-xs"
+              className="flex items-center gap-1.5 bg-[#014485] hover:bg-[#013467] text-white px-3.5 py-2 rounded-xl text-xs font-bold transition cursor-pointer shadow-xs"
               title="Sign In Page"
             >
               <User size={14} /> Sign In
@@ -286,23 +294,24 @@ export function Header() {
           )}
 
           {/* Wishlist */}
-          <Link href="/products" className="hover:text-gray-500 transition" title="Wishlist">
+          <Link href="/products" className="hover:text-[#014485] transition" title="Wishlist">
             <Heart size={18} />
           </Link>
 
           {/* Cart Icon Drawer Trigger */}
           <button
             onClick={openCartDrawer}
-            className="relative hover:text-gray-500 transition flex items-center justify-center cursor-pointer"
+            className="relative hover:text-[#014485] transition flex items-center justify-center cursor-pointer"
             title="Shopping Cart"
           >
             <ShoppingCart size={18} />
             {mounted && cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-black text-white font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-[#17993b] text-white font-bold text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                 {cartCount}
               </span>
             )}
           </button>
+
 
           {/* Mobile Hamburger Navigation Button */}
           <button
@@ -327,10 +336,12 @@ export function Header() {
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-gray-100 pb-4">
                 <Link href="/" onClick={() => setIsMobileNavOpen(false)} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 shadow-xs">
-                    <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+                  <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 shadow-xs bg-white border border-gray-200 p-1">
+                    <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-contain" />
                   </div>
-                  <span className="font-black text-lg text-black font-retro-heading">MAGIC LINK</span>
+
+                  <span className="font-black text-lg text-black font-retro-heading uppercase">NILE EXPRESS CARGO</span>
+
                 </Link>
                 <button
                   onClick={() => setIsMobileNavOpen(false)}
@@ -351,6 +362,16 @@ export function Header() {
                   }`}
                 >
                   <span>Home</span>
+                  <ChevronRight size={16} className="opacity-60" />
+                </Link>
+                <Link
+                  href="/cargo"
+                  onClick={() => setIsMobileNavOpen(false)}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold transition ${
+                    pathname === '/cargo' ? 'bg-black text-white' : 'text-gray-800 hover:bg-gray-100'
+                  }`}
+                >
+                  <span className="flex items-center gap-1.5 font-mono text-xs"><Plane size={14} /> Nile Cargo Network</span>
                   <ChevronRight size={16} className="opacity-60" />
                 </Link>
                 <Link
@@ -384,6 +405,7 @@ export function Header() {
                   <ChevronRight size={16} className="opacity-60" />
                 </Link>
               </nav>
+
 
               {/* Account / Dashboard Links */}
               {user ? (

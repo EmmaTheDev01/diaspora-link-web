@@ -23,7 +23,7 @@ export default function AirFreightPage() {
             <Luggage size={20} /> Baggage Allowance Monetisation
           </h2>
           <p>
-            International travelers flying between Kigali (KGL) and Toronto (YYZ) can list their unused baggage allowance on Magic Link. Traveling couriers earn fixed per-kilogram payouts carrying pre-inspected commercial parcels.
+            International travelers flying between Kigali (KGL) and Toronto (YYZ) can list their unused baggage allowance on Nile Express Cargo. Traveling couriers earn fixed per-kilogram payouts carrying pre-inspected commercial parcels.
           </p>
         </section>
 
@@ -41,9 +41,10 @@ export default function AirFreightPage() {
             <Plane size={20} /> Airport Clearance & Courier Protection
           </h2>
           <p>
-            Couriers carry official Magic Link Flight Manifests exempting them from personal customs duty liability. Upon landing at Pearson Airport (YYZ), parcels are handed over to destination hub officers for final delivery.
+            Couriers carry official Nile Express Cargo Flight Manifests exempting them from personal customs duty liability. Upon landing at Pearson Airport (YYZ), parcels are handed over to destination hub officers for final delivery.
           </p>
         </section>
+
       </div>
     </main>
   );

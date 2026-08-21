@@ -25,13 +25,14 @@ export function Footer() {
           {/* Column 1: Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl overflow-hidden border border-gray-200 shrink-0">
-                <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden border border-gray-200 shrink-0 bg-white p-1">
+                <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-black text-2xl tracking-tight text-[#111111] font-retro-heading">MAGIC LINK</span>
+
+              <span className="font-black text-2xl tracking-tight text-[#111111] font-retro-heading uppercase">NILE EXPRESS CARGO</span>
             </div>
             <p className="text-gray-600 text-xs leading-relaxed font-medium">
-              Cross-Border Diaspora E-Commerce & Freight Luggage Logistics platform connecting Kigali (`KGL`) and Toronto (`YYZ`).
+              Cross-Border Air Freight & Baggage Logistics platform connecting Canada (`YYZ`) and East Africa (`KGL`, `EBB`, `NBO`).
             </p>
           </div>
 
@@ -41,8 +42,9 @@ export function Footer() {
               Platform Navigation
             </h4>
             <ul className="space-y-2 text-xs font-medium text-gray-600">
+              <li><Link href="/" className="hover:text-black transition">Cargo Export Hub</Link></li>
               <li><Link href="/products" className="hover:text-black transition">Shop Export Catalog</Link></li>
-              <li><Link href="/about" className="hover:text-black transition">About Protocol</Link></li>
+              <li><Link href="/about" className="hover:text-black transition">About Nile Express</Link></li>
               <li><Link href="/login" className="hover:text-black transition">Sign In</Link></li>
               <li><Link href="/register" className="hover:text-black transition">Create Account</Link></li>
             </ul>
@@ -54,7 +56,7 @@ export function Footer() {
               Corridors & Services
             </h4>
             <ul className="space-y-2 text-xs font-medium text-gray-600">
-              <li><Link href="/corridors" className="hover:text-black transition">Kigali ↔ Toronto Freight</Link></li>
+              <li><Link href="/corridors" className="hover:text-black transition">Toronto ↔ East Africa Freight</Link></li>
               <li><Link href="/escrow-vault" className="hover:text-black transition">256-Bit Escrow Vault</Link></li>
               <li><Link href="/air-freight" className="hover:text-black transition">Passenger Air Freight</Link></li>
               <li><Link href="/partnerships" className="hover:text-black transition">Cooperative Partnerships</Link></li>
@@ -77,7 +79,8 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500 font-medium">
-          <p>© {new Date().getFullYear()} Magic Link Inc. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Nile Express Cargo Inc. All Rights Reserved.</p>
+
           <div className="flex items-center gap-4 font-bold text-[#111111] text-xs">
             <span>Stripe CAD</span>
             <span>•</span>

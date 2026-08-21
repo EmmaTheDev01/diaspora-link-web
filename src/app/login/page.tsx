@@ -22,7 +22,11 @@ export default function LoginPage() {
       const loggedInUser = await loginUser(email, password);
       setIsSubmitting(false);
 
-      if (loggedInUser.role === 'admin') router.push('/admin');
+      const hasDraft = typeof window !== 'undefined' && localStorage.getItem('nile_draft_cargo');
+
+      if (hasDraft) {
+        router.push('/buyer?action=send_cargo');
+      } else if (loggedInUser.role === 'admin') router.push('/admin');
       else if (loggedInUser.role === 'vendor_rwanda') router.push('/vendor-rwanda');
       else if (loggedInUser.role === 'vendor_canada') router.push('/vendor-canada');
       else if (loggedInUser.role === 'logistics_courier') router.push('/logistics');
@@ -31,6 +35,7 @@ export default function LoginPage() {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <main className="h-screen w-full bg-white text-[#111111] font-sans flex flex-col lg:flex-row overflow-hidden relative">
@@ -47,7 +52,7 @@ export default function LoginPage() {
 
         <img
           src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=1400&auto=format&fit=crop"
-          alt="Magic Link Trade Protocol"
+          alt="Nile Express Cargo Trade Protocol"
           className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
         />
         {/* Soft Gradient Overlay */}
@@ -56,10 +61,10 @@ export default function LoginPage() {
         {/* Overlayed Text at Bottom */}
         <div className="absolute bottom-12 left-12 right-12 z-10 text-white space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest bg-white text-black px-3.5 py-1.5 rounded-full inline-block font-mono">
-            MAGIC LINK EXCLUSIVE PROTOCOL
+            NILE EXPRESS CARGO PROTOCOL
           </span>
           <h2 className="text-3xl lg:text-5xl font-black font-retro-heading leading-tight uppercase">
-            Kigali ↔ Toronto Trade Infrastructure
+            Canada ✈ East Africa Cargo Infrastructure
           </h2>
           <p className="text-gray-200 text-sm lg:text-base font-medium max-w-lg leading-relaxed">
             Direct air flight luggage dispatch, 256-bit Escrow Vault locks, and verified trade corridors.
@@ -82,11 +87,11 @@ export default function LoginPage() {
           <div className="text-center space-y-3">
             <Link href="/" className="inline-block">
               <div className="w-14 h-14 rounded-2xl overflow-hidden border border-gray-200 mx-auto shadow-xs">
-                <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+                <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-cover" />
               </div>
             </Link>
             <h1 className="text-3xl lg:text-4xl font-black text-[#111111] font-retro-heading uppercase tracking-tight">
-              Sign In To Magic Link
+              Sign In To Nile Express Cargo
             </h1>
             <p className="text-sm text-gray-600 font-medium">
               Enter your registered email and password to access your dashboard profile.
@@ -94,6 +99,8 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleLoginSubmit} className="space-y-5 text-sm font-medium">
+
+
             <div>
               <label className="font-bold text-[#111111] uppercase tracking-wider block mb-2 text-xs">Email Address</label>
               <div className="relative">
@@ -140,11 +147,12 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-black hover:bg-gray-800 text-white font-bold py-4 rounded-xl uppercase tracking-widest transition flex items-center justify-center gap-2 text-xs cursor-pointer shadow-md mt-2 disabled:opacity-50"
+              className="w-full bg-[#014485] hover:bg-[#013467] text-white font-bold py-4 rounded-xl uppercase tracking-widest transition flex items-center justify-center gap-2 text-xs cursor-pointer shadow-md mt-2 disabled:opacity-50"
             >
               <span>{isSubmitting ? 'Signing In...' : 'SIGN IN'}</span>
               <ChevronRight size={18} />
             </button>
+
           </form>
 
           <div className="pt-4 border-t border-gray-100 text-center text-sm text-gray-600 font-medium">

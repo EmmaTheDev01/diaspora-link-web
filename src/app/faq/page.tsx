@@ -15,7 +15,7 @@ const FAQS: FAQItem[] = [
   },
   {
     question: 'How does passenger flight baggage logistics work for couriers?',
-    answer: 'Travelers flying between Kigali (KGL) and Toronto (YYZ) can list their unused baggage allowance on Magic Link. They earn CAD/RWF payouts per kilogram for carrying inspected, tamper-sealed export parcels.',
+    answer: 'Travelers flying between Kigali (KGL) and Toronto (YYZ) can list their unused baggage allowance on Nile Express Cargo. They earn CAD/RWF payouts per kilogram for carrying inspected, tamper-sealed export parcels.',
   },
   {
     question: 'How do I switch between CAD ($) and RWF currency?',
@@ -40,8 +40,9 @@ export default function FAQPage() {
           Help & Support
         </span>
         <h1 className="text-4xl font-black text-[#111111] font-retro-heading">Frequently Asked Questions</h1>
-        <p className="text-gray-500 text-sm font-medium">Everything you need to know about Magic Link cross-border trade.</p>
+        <p className="text-gray-500 text-sm font-medium">Everything you need to know about Nile Express Cargo cross-border trade.</p>
       </div>
+
 
       <div className="space-y-4">
         {FAQS.map((faq, idx) => (

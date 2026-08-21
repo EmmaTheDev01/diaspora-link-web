@@ -165,21 +165,30 @@ CREATE TABLE IF NOT EXISTS public.user_wishlists (
 CREATE TABLE IF NOT EXISTS public.carrier_trips (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   courier_id UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
-  flight_number TEXT NOT NULL,         -- e.g. WB 302 / ET 602
+  courier_name TEXT NOT NULL DEFAULT 'Courier',
+  courier_phone TEXT,
+  courier_whatsapp TEXT,
+  courier_email TEXT,
+  flight_number TEXT NOT NULL,         -- e.g. WB 302 / AC 840
   airline TEXT NOT NULL DEFAULT 'RwandAir',
-  departure_airport VARCHAR(3) NOT NULL DEFAULT 'KGL',
-  arrival_airport VARCHAR(3) NOT NULL DEFAULT 'YYZ',
+  departure_airport VARCHAR(10) NOT NULL DEFAULT 'YYZ',
+  arrival_airport VARCHAR(10) NOT NULL DEFAULT 'KGL',
   departure_date DATE NOT NULL,
+  boarding_time TEXT,                 -- e.g. "14:30 EST"
+  landing_time TEXT,                  -- e.g. "08:15 CAT"
+  flight_duration_hours NUMERIC(4, 1) DEFAULT 13.5,
+  itinerary_notes TEXT,               -- e.g. "Direct Flight YYZ to KGL via RwandAir Express"
   
   -- Luggage Capacity (kg) & Rates
-  total_capacity_kg NUMERIC(6, 2) NOT NULL DEFAULT 15.0,
-  available_capacity_kg NUMERIC(6, 2) NOT NULL DEFAULT 15.0,
-  rate_per_kg_cad NUMERIC(8, 2) NOT NULL DEFAULT 10.00,
+  total_capacity_kg NUMERIC(6, 2) NOT NULL DEFAULT 40.0,
+  available_capacity_kg NUMERIC(6, 2) NOT NULL DEFAULT 28.0,
+  rate_per_kg_cad NUMERIC(8, 2) NOT NULL DEFAULT 14.00,
   
   status trip_status NOT NULL DEFAULT 'listed',
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
 
 -- =============================================================================
 -- 6. ORDERS TABLE (CROSS-BORDER PURCHASES)
@@ -272,6 +281,79 @@ CREATE TABLE IF NOT EXISTS public.shipment_manifests (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- =============================================================================
+-- 9b. CARGO PACKAGES TABLE (EXPORT & IMPORT CARGO NETWORK WITH COURIER ASSIGNMENT)
+-- =============================================================================
+
+DO $$ BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'cargo_stage_code') THEN
+        CREATE TYPE cargo_stage_code AS ENUM ('01_BOOK', '02_COLLECT', '03_CONSOLIDATE', '04_FLY', '05_CLEAR', '06_DELIVER');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'cargo_type_enum') THEN
+        CREATE TYPE cargo_type_enum AS ENUM ('personal_effects', 'household_items', 'commercial_goods', 'electronics', 'apparel', 'gifts', 'documents');
+    END IF;
+END $$;
+
+CREATE TABLE IF NOT EXISTS public.cargo_packages (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  awb_number TEXT NOT NULL UNIQUE,          -- e.g. NE-CA-892104
+  qr_seal_code TEXT NOT NULL UNIQUE,        -- e.g. NE-SEAL-9921
+  barcode_id TEXT NOT NULL UNIQUE,          -- e.g. 892104-CA-UG
+  description TEXT NOT NULL,                -- Summary description
+  cargo_type cargo_type_enum NOT NULL DEFAULT 'personal_effects',
+  
+  -- Sender Contact & Identification
+  sender_id_type VARCHAR(30) NOT NULL DEFAULT 'passport', -- 'passport', 'national_id', 'drivers_license'
+  sender_id_number TEXT NOT NULL DEFAULT 'A8901234',
+  sender JSONB NOT NULL DEFAULT '{}'::jsonb,              -- Name, Phone, Email, City, Address
+  
+  -- Receiver Contact & Destination
+  receiver JSONB NOT NULL DEFAULT '{}'::jsonb,            -- Name, Phone, WhatsApp, City, Address
+  
+  -- Itemized Contents List
+  items JSONB NOT NULL DEFAULT '[]'::jsonb,               -- Array of { name, quantity, weight_kg, image }
+  
+  -- Assigned Luggage Courier & Carrier Trip
+  courier_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL,
+  courier_name TEXT,
+  carrier_trip_id UUID REFERENCES public.carrier_trips(id) ON DELETE SET NULL,
+  flight_number TEXT,
+  
+  -- Physical Dimensions & Weight
+  weight_kg NUMERIC(6, 2) NOT NULL DEFAULT 10.0,
+  length_cm NUMERIC(6, 2) DEFAULT 50.0,
+  width_cm NUMERIC(6, 2) DEFAULT 40.0,
+  height_cm NUMERIC(6, 2) DEFAULT 30.0,
+  declared_value_cad NUMERIC(10, 2) NOT NULL DEFAULT 250.00,
+  
+  -- Pricing & Escrow Breakdown
+  rate_per_kg_cad NUMERIC(8, 2) NOT NULL DEFAULT 14.00,
+  pickup_fee_cad NUMERIC(8, 2) NOT NULL DEFAULT 20.00,
+  total_cost_cad NUMERIC(10, 2) NOT NULL,
+  total_cost_rwf NUMERIC(12, 2) NOT NULL,
+  
+  -- Package Photos Array
+  images TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+  
+  -- 6-Stage Journey Milestones
+  current_stage cargo_stage_code NOT NULL DEFAULT '01_BOOK',
+  stage_title TEXT NOT NULL DEFAULT '01 BOOK - Shipment Requested & Pricing Approved',
+  milestones JSONB NOT NULL DEFAULT '[]'::jsonb,
+  
+  -- Last-Mile Logistics & Verification PIN
+  transport_mode VARCHAR(20) NOT NULL DEFAULT 'Van',
+  proof_of_delivery_pin VARCHAR(6) DEFAULT '8492',
+  is_escrow_protected BOOLEAN NOT NULL DEFAULT TRUE,
+  
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS idx_cargo_packages_awb ON public.cargo_packages(awb_number);
+CREATE INDEX IF NOT EXISTS idx_cargo_packages_courier ON public.cargo_packages(courier_id);
+CREATE INDEX IF NOT EXISTS idx_cargo_packages_trip ON public.cargo_packages(carrier_trip_id);
+
 
 -- =============================================================================
 -- 10. SHIPMENT MILESTONES TABLE (WAYBILL TIMELINE TRACKING)
@@ -577,10 +659,13 @@ CREATE POLICY "Users Manage Notifications" ON public.notifications FOR ALL USING
 INSERT INTO storage.buckets (id, name, public) 
 VALUES 
   ('product-images', 'product-images', true),
+  ('cargo-photos', 'cargo-photos', true),
+  ('package-images', 'package-images', true),
   ('documents', 'documents', true),
   ('manifest-photos', 'manifest-photos', true),
   ('avatars', 'avatars', true)
 ON CONFLICT (id) DO UPDATE SET public = true;
+
 
 DROP POLICY IF EXISTS "Public Read Storage Objects" ON storage.objects;
 CREATE POLICY "Public Read Storage Objects" ON storage.objects FOR SELECT USING (true);
@@ -590,3 +675,26 @@ CREATE POLICY "Public Insert Storage Objects" ON storage.objects FOR INSERT WITH
 
 DROP POLICY IF EXISTS "Public Update Storage Objects" ON storage.objects;
 CREATE POLICY "Public Update Storage Objects" ON storage.objects FOR UPDATE USING (true);
+
+
+-- =============================================================================
+-- AUTO CONFIRM EMAIL TRIGGER FOR SUPABASE AUTH (AUTOMATIC VERIFICATION)
+-- Automatically sets email_confirmed_at = NOW() upon user registration
+-- =============================================================================
+
+CREATE OR REPLACE FUNCTION public.auto_confirm_email()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.email_confirmed_at IS NULL THEN
+    NEW.email_confirmed_at := NOW();
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS trg_auto_confirm_email ON auth.users;
+CREATE TRIGGER trg_auto_confirm_email
+BEFORE INSERT ON auth.users
+FOR EACH ROW EXECUTE FUNCTION public.auto_confirm_email();
+
+

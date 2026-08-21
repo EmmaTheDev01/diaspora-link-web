@@ -253,6 +253,8 @@ export default function VendorCanadaPage() {
   };
 
   const menuItems = [
+    { id: 'send_cargo', label: 'Send Cargo (Export)', icon: <Plus size={18} /> },
+    { id: 'cargo', label: 'Cargo Packages (Sent & Received)', icon: <Package size={18} /> },
     { id: 'overview', label: 'Overview', icon: <Package size={18} /> },
     { id: 'orders', label: 'Orders & Deliveries', icon: <ShoppingBag size={18} /> },
     { id: 'catalog', label: 'Manage Products', icon: <ShoppingBag size={18} /> },
@@ -274,18 +276,19 @@ export default function VendorCanadaPage() {
       {activeTab === 'overview' && (
         <div className="space-y-8">
           {/* Business Banner */}
-          <div className="bg-black text-white p-8 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
+          <div className="bg-[#014485] text-white p-8 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-widest bg-white text-black px-3.5 py-1 rounded-full flex items-center gap-1.5 font-mono">
+                <span className="text-xs font-bold uppercase tracking-widest bg-[#17993b] text-white px-3.5 py-1 rounded-full flex items-center gap-1.5 font-mono">
                   <Building2 size={14} /> CRA REGISTERED CANADIAN VENDOR
                 </span>
               </div>
               <h2 className="text-2xl lg:text-3xl font-black font-retro-heading uppercase">
                 {user?.full_name || 'Toronto Import & Vendor Operations'}
               </h2>
-              <p className="text-gray-300 text-xs font-medium">Distributing specialty goods across Canada and cross-border corridors.</p>
+              <p className="text-gray-200 text-xs font-medium">Distributing specialty goods across Canada and cross-border corridors.</p>
             </div>
+
 
             <button
               onClick={() => {
@@ -370,7 +373,8 @@ export default function VendorCanadaPage() {
           <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-[#111111] font-medium">
-                <thead className="bg-black text-white font-bold uppercase tracking-wider text-xs">
+                <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-xs">
+
                   <tr>
                     <th className="p-4">Order Number</th>
                     <th className="p-4">Buyer Name & Delivery Address</th>
@@ -552,7 +556,8 @@ export default function VendorCanadaPage() {
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-[#111111] font-medium">
-                <thead className="bg-black text-white font-bold uppercase tracking-wider text-xs">
+                <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-xs">
+
                   <tr>
                     <th className="p-3.5">Rank</th>
                     <th className="p-3.5">Product</th>

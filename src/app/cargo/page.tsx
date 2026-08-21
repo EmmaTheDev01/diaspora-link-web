@@ -1,9 +1,13 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HeroArea } from '@/components/home/HeroArea';
 import { FeatureHighlights } from '@/components/home/FeatureHighlights';
+import { dbService } from '@/services/db';
+import { CargoPackage } from '@/types';
+import Link from 'next/link';
+import { Plane, ShieldCheck, Truck, Scale, MapPin, ArrowRight, ShoppingBag } from 'lucide-react';
 
-export default function HomePage() {
+export default function CargoNetworkPage() {
   return (
     <main className="min-h-screen bg-gray-50 font-sans text-black">
       {/* 1. Dedicated Sender & Receiver Dual Hub (Light Background, NO Black Hero Container) */}
@@ -29,40 +33,55 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
             <div className="bg-gray-50 p-4 rounded-2xl border border-black space-y-2 text-center">
-              <span className="text-xs font-black text-white font-mono bg-black px-2 py-0.5 rounded">01 BOOK</span>
+              <span className="text-xs font-black text-white font-mono bg-[#014485] px-2 py-0.5 rounded">01 BOOK</span>
               <h3 className="font-bold text-xs text-black">Instant Quote</h3>
               <p className="text-[11px] text-gray-600">Sender fills ID & assigns passenger courier.</p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-2xl border border-black space-y-2 text-center">
-              <span className="text-xs font-black text-white font-mono bg-black px-2 py-0.5 rounded">02 COLLECT</span>
+              <span className="text-xs font-black text-white font-mono bg-[#014485] px-2 py-0.5 rounded">02 COLLECT</span>
               <h3 className="font-bold text-xs text-black">Home Pickup</h3>
               <p className="text-[11px] text-gray-600">Toronto doorstep pickup or drop-off at intake hub.</p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-2xl border border-black space-y-2 text-center">
-              <span className="text-xs font-black text-white font-mono bg-black px-2 py-0.5 rounded">03 CONSOLIDATE</span>
+              <span className="text-xs font-black text-white font-mono bg-[#014485] px-2 py-0.5 rounded">03 CONSOLIDATE</span>
               <h3 className="font-bold text-xs text-black">Weigh & Photo</h3>
               <p className="text-[11px] text-gray-600">Weighed on scale, photo-documented & barcode-sealed.</p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-2xl border border-black space-y-2 text-center">
-              <span className="text-xs font-black text-white font-mono bg-black px-2 py-0.5 rounded">04 FLY</span>
+              <span className="text-xs font-black text-white font-mono bg-[#014485] px-2 py-0.5 rounded">04 FLY</span>
               <h3 className="font-bold text-xs text-black">Air Flight</h3>
-              <p className="text-[11px] text-gray-600">Air cargo transit on passenger courier flight.</p>
+              <p className="text-[11px] text-gray-600">Hand-carried in baggage by verified passenger courier.</p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-2xl border border-black space-y-2 text-center">
-              <span className="text-xs font-black text-white font-mono bg-black px-2 py-0.5 rounded">05 CLEAR</span>
+              <span className="text-xs font-black text-white font-mono bg-[#014485] px-2 py-0.5 rounded">05 CLEAR</span>
               <h3 className="font-bold text-xs text-black">Customs Clear</h3>
-              <p className="text-[11px] text-gray-600">Destination customs clearance handled smoothly.</p>
+              <p className="text-[11px] text-gray-600">Customs clearance & local hub sorting.</p>
             </div>
 
             <div className="bg-gray-50 p-4 rounded-2xl border border-black space-y-2 text-center">
-              <span className="text-xs font-black text-white font-mono bg-black px-2 py-0.5 rounded">06 DELIVER</span>
-              <h3 className="font-bold text-xs text-black">Doorstep Deliver</h3>
-              <p className="text-[11px] text-gray-600">Local motorcycle/van delivery with PIN release.</p>
+              <span className="text-xs font-black text-white font-mono bg-[#17993b] px-2 py-0.5 rounded">06 DELIVER</span>
+              <h3 className="font-bold text-xs text-black">Doorstep Delivery</h3>
+              <p className="text-[11px] text-gray-600">Released upon 4-digit recipient PIN code verification.</p>
             </div>
+          </div>
+
+          <div className="pt-4 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-gray-200">
+            <div className="flex items-center space-x-2 text-xs font-bold text-gray-700">
+              <ShieldCheck className="w-5 h-5 text-[#17993b]" />
+              <span>Full Escrow Protection + WhatsApp Alerts + Real-time Photo Tracking</span>
+            </div>
+
+            <Link
+              href="/products"
+              className="px-6 py-3 bg-[#014485] hover:bg-[#013467] text-white font-black text-xs uppercase tracking-wider rounded-xl transition-colors font-mono flex items-center space-x-2 shrink-0 shadow-md"
+            >
+              <ShoppingBag className="w-4 h-4 text-white" />
+              <span>SHOP EXPORT MARKETPLACE</span>
+            </Link>
           </div>
         </div>
       </section>

@@ -15,7 +15,7 @@ export default function TermsPage() {
           Trade Protocol Terms
         </span>
         <h1 className="text-4xl lg:text-5xl font-black text-[#111111] font-retro-heading">Terms of Cross-Border Trade & Escrow Vault</h1>
-        <p className="text-gray-500 text-sm font-medium">Effective Date: August 2026 • Magic Link Cross-Border Protocol</p>
+        <p className="text-gray-500 text-sm font-medium">Effective Date: August 2026 • Nile Express Cargo Cross-Border Protocol</p>
       </div>
 
       {/* Clean White Well-Proportioned Sections */}
@@ -23,17 +23,17 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">1. Scope of Agreement & Multi-Role Platform Access</h2>
           <p className="leading-loose">
-            This agreement governs all commerce, logistics dispatch bookings, and escrow settlements executed on Magic Link connecting Kigali (KGL) and Toronto (YYZ). By creating an account or completing transactions, users agree to abide by these terms across five specialized role profiles: Diaspora Buyer, Rwanda Exporter, Canada Importer, Air Courier, and System Administrator.
+            This agreement governs all commerce, logistics dispatch bookings, and escrow settlements executed on Nile Express Cargo connecting Kigali (KGL) and Toronto (YYZ). By creating an account or completing transactions, users agree to abide by these terms across five specialized role profiles: Diaspora Buyer, Rwanda Exporter, Canada Importer, Air Courier, and System Administrator.
           </p>
           <p className="leading-loose">
-            Exporters in Rwanda agree to satisfy Rwanda Development Board (RDB) export mandates, while Canadian importers agree to comply with Canada Revenue Agency (CRA) import standards. Magic Link reserves the right to suspend accounts attempting escrow bypass or submitting unverified credentials.
+            Exporters in Rwanda agree to satisfy Rwanda Development Board (RDB) export mandates, while Canadian importers agree to comply with Canada Revenue Agency (CRA) import standards. Nile Express Cargo reserves the right to suspend accounts attempting escrow bypass or submitting unverified credentials.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">2. 256-Bit Escrow Vault & PIN Release Mechanics</h2>
           <p className="leading-loose">
-            Financial transactions on Magic Link are protected by our automated 256-bit Escrow Vault. Upon checkout, 100% of order funds—including product item costs and freight tariffs—are locked in escrow. Escrow holdings remain untouched by sellers or couriers during transport.
+            Financial transactions on Nile Express Cargo are protected by our automated 256-bit Escrow Vault. Upon checkout, 100% of order funds—including product item costs and freight tariffs—are locked in escrow. Escrow holdings remain untouched by sellers or couriers during transport.
           </p>
           <p className="leading-loose">
             Escrow release requires cryptographic verification via a unique 6-digit confirmation PIN delivered to the buyer. Upon physical parcel delivery in Toronto or Kigali, the recipient inspects the tamper-evident QR seal and enters the PIN to instantly release funds to the vendor and courier.
@@ -43,7 +43,7 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">3. Rwandan Exporter Quality & RDB TIN Warranties</h2>
           <p className="leading-loose">
-            Exporters (vendor_rwanda) listing products on Magic Link must maintain an active RDB Tax Identification Number (TIN) and satisfy National Agricultural Export Development Board (NAEB) quality benchmarks. Agricultural items, including Gishwati tea and Lake Kivu Arabica coffee, must hold valid phytosanitary certificates.
+            Exporters (vendor_rwanda) listing products on Nile Express Cargo must maintain an active RDB Tax Identification Number (TIN) and satisfy National Agricultural Export Development Board (NAEB) quality benchmarks. Agricultural items, including Gishwati tea and Lake Kivu Arabica coffee, must hold valid phytosanitary certificates.
           </p>
           <p className="leading-loose">
             Exporters warrant that listed items are authentic, accurately described, and packaged in food-grade, moisture-resistant containers suitable for high-altitude air transit. Shipments rejected at Kigali Airport due to packaging defects shall be returned at the seller's expense.
@@ -83,7 +83,7 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">7. Dual-Currency Exchange Settlement Engine</h2>
           <p className="leading-loose">
-            Magic Link operates a real-time dual-currency settlement engine supporting Canadian Dollars (CAD $) and Rwandan Francs (RWF). Prices update dynamically based on official foreign exchange benchmark rates (e.g. 1 CAD = 1,333.33 RWF).
+            Nile Express Cargo operates a real-time dual-currency settlement engine supporting Canadian Dollars (CAD $) and Rwandan Francs (RWF). Prices update dynamically based on official foreign exchange benchmark rates (e.g. 1 CAD = 1,333.33 RWF).
           </p>
           <p className="leading-loose">
             Escrow holdings locked during checkout are guaranteed against currency fluctuations for thirty days. Exporters in Rwanda receive payouts converted into RWF at the locked transaction rate, insulating agricultural producers against foreign exchange risk.
@@ -103,10 +103,10 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-bold text-black font-retro-heading">9. Limitation of Liability & Indemnification</h2>
           <p className="leading-loose">
-            To the maximum extent permitted by law, Magic Link and its software operators shall not be liable for indirect damages, flight delays, customs holds, or force majeure events. Magic Link's total aggregate liability is limited to the total escrow transaction value of the specific order.
+            To the maximum extent permitted by law, Nile Express Cargo and its software operators shall not be liable for indirect damages, flight delays, customs holds, or force majeure events. Nile Express Cargo's total aggregate liability is limited to the total escrow transaction value of the specific order.
           </p>
           <p className="leading-loose">
-            Users agree to indemnify Magic Link against third-party claims or penalties resulting from fraudulent tax credentials or transport violations.
+            Users agree to indemnify Nile Express Cargo against third-party claims or penalties resulting from fraudulent tax credentials or transport violations.
           </p>
         </section>
 

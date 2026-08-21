@@ -121,16 +121,18 @@ export const useAuthStore = create<AuthState>()(
         try {
           const supabase = createClient();
           const { data: sessionData } = await supabase.auth.getSession();
+
           if (sessionData?.session?.user) {
             const authUser = sessionData.session.user;
-            const profile =
-              (await dbService.fetchUserProfile(authUser.id)) ||
-              (await dbService.fetchUserProfile(authUser.email || ''));
+            const profile = authUser?.id ? await dbService.fetchUserProfile(authUser.id) : null;
+
 
             if (profile) {
               set({ user: profile, isAuthenticated: true, activeRole: profile.role });
               return;
             }
+
+
 
             const realName =
               authUser.user_metadata?.full_name ||

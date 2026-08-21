@@ -181,7 +181,8 @@ export default function AdminConsolePage() {
           <div className="bg-white rounded-2xl border border-gray-200 shadow-xs overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm text-[#111111] font-medium">
-                <thead className="bg-black text-white font-bold uppercase tracking-wider text-xs">
+                <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-xs">
+
                   <tr>
                     <th className="p-4">Order Number</th>
                     <th className="p-4">Buyer / Recipient</th>
@@ -236,7 +237,8 @@ export default function AdminConsolePage() {
           <h2 className="text-2xl font-bold text-black font-retro-heading">Account Approvals Queue</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-[#111111] font-medium">
-              <thead className="bg-black text-white font-bold uppercase tracking-wider text-xs">
+              <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-xs">
+
                 <tr>
                   <th className="p-4">Applicant / Business</th>
                   <th className="p-4">Requested Role</th>
@@ -281,7 +283,8 @@ export default function AdminConsolePage() {
           <h2 className="text-2xl font-bold text-black font-retro-heading">256-Bit Escrow Vault Holdings</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-[#111111] font-medium">
-              <thead className="bg-black text-white font-bold uppercase tracking-wider text-xs">
+              <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-xs">
+
                 <tr>
                   <th className="p-4">Order Number</th>
                   <th className="p-4">Buyer</th>
@@ -327,7 +330,8 @@ export default function AdminConsolePage() {
           <h2 className="text-2xl font-bold text-black font-retro-heading">Device Session Audit (`user_devices`)</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm text-[#111111] font-medium">
-              <thead className="bg-black text-white font-bold uppercase tracking-wider text-xs">
+              <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-xs">
+
                 <tr>
                   <th className="p-4">User</th>
                   <th className="p-4">Device & Browser</th>

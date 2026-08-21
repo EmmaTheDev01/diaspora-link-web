@@ -138,12 +138,13 @@ export function DashboardLayout({
         <div className="space-y-8">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-xs">
-              <img src="/icon.png" alt="Magic Link" className="w-full h-full object-cover" />
+            <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-xs bg-white border border-gray-200 p-1">
+              <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-contain" />
             </div>
+
             <div>
               <div className="font-black text-xl tracking-tight text-[#111111] font-retro-heading">
-                MAGIC LINK
+                NILE EXPRESS CARGO
               </div>
               <p className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Dashboard Portal</p>
             </div>
@@ -158,11 +159,11 @@ export function DashboardLayout({
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-bold transition cursor-pointer text-left ${
-                    isActive
-                      ? 'bg-black text-white shadow-sm'
-                      : 'text-gray-700 hover:bg-gray-100 hover:text-black'
-                  }`}
+                  className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-bold transition cursor-pointer text-left ${isActive
+                      ? 'bg-[#014485] text-white shadow-sm'
+                      : 'text-gray-700 hover:bg-gray-100 hover:text-[#014485]'
+                    }`}
+
                 >
                   <span className={`shrink-0 ${isActive ? 'text-white' : 'text-gray-500'}`}>{item.icon}</span>
                   <span className="flex-1 whitespace-nowrap truncate">{item.label}</span>
@@ -205,12 +206,13 @@ export function DashboardLayout({
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <Link href="/" onClick={() => setIsMobileSidebarOpen(false)} className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-xs">
-                    <img src="/icon.png" alt="Magic Link" className="w-full h-full object-cover" />
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 shadow-xs bg-white border border-gray-200 p-1">
+                    <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-contain" />
                   </div>
+
                   <div>
                     <div className="font-black text-lg tracking-tight text-[#111111] font-retro-heading">
-                      MAGIC LINK
+                      NILE EXPRESS CARGO
                     </div>
                     <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider">Dashboard Portal</p>
                   </div>
@@ -234,11 +236,10 @@ export function DashboardLayout({
                         setActiveTab(item.id);
                         setIsMobileSidebarOpen(false);
                       }}
-                      className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-bold transition cursor-pointer text-left ${
-                        isActive
-                          ? 'bg-black text-white shadow-sm'
-                          : 'text-gray-700 hover:bg-gray-100 hover:text-black'
-                      }`}
+                      className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-bold transition cursor-pointer text-left ${isActive
+                          ? 'bg-[#014485] text-white shadow-sm'
+                          : 'text-gray-700 hover:bg-gray-100 hover:text-[#014485]'
+                        }`}
                     >
                       <span className={`shrink-0 ${isActive ? 'text-white' : 'text-gray-500'}`}>{item.icon}</span>
                       <span className="flex-1 whitespace-nowrap truncate">{item.label}</span>
@@ -256,7 +257,7 @@ export function DashboardLayout({
                 className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 text-xs font-bold text-black transition"
               >
                 <span className="flex items-center gap-2 whitespace-nowrap truncate">
-                  <ShoppingBag size={15} className="shrink-0" /> Storefront Catalog
+                  <ShoppingBag size={15} className="shrink-0 text-[#014485]" /> Storefront Catalog
                 </span>
                 <ChevronRight size={14} className="text-gray-400 shrink-0" />
               </Link>
@@ -305,7 +306,7 @@ export function DashboardLayout({
                   if (searchQuery.trim()) setIsSearchOpen(true);
                 }}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-medium focus:outline-none focus:border-black"
+                className="w-full pl-9 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs font-medium focus:outline-none focus:border-[#014485]"
               />
               {searchQuery && (
                 <button

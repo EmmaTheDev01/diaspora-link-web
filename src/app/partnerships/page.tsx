@@ -23,7 +23,7 @@ export default function PartnershipsPage() {
             <Users size={20} /> Rwandan Agricultural Cooperatives
           </h2>
           <p>
-            Magic Link partners directly with registered Rwandan farming cooperatives, including Gishwati tea growers and Lake Kivu specialty coffee producers. We provide digital storefronts, RDB TIN integration, and direct escrow payments.
+            Nile Express Cargo partners directly with registered Rwandan farming cooperatives, including Gishwati tea growers and Lake Kivu specialty coffee producers. We provide digital storefronts, RDB TIN integration, and direct escrow payments.
           </p>
         </section>
 
@@ -32,9 +32,10 @@ export default function PartnershipsPage() {
             <Building2 size={20} /> Canadian Importers & Distributors
           </h2>
           <p>
-            Commercial businesses in Canada with active CRA Business Numbers can partner with Magic Link to source wholesale African specialty goods, specialty coffees, teas, and handicrafts with automated CBSA customs clearance.
+            Commercial businesses in Canada with active CRA Business Numbers can partner with Nile Express Cargo to source wholesale African specialty goods, specialty coffees, teas, and handicrafts with automated CBSA customs clearance.
           </p>
         </section>
+
 
         <section className="space-y-2">
           <h2 className="text-xl font-bold text-black font-retro-heading flex items-center gap-2">

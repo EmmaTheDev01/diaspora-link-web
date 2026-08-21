@@ -2,8 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { dbService } from '@/services/db';
-import { Order, EscrowAccount } from '@/types';
+import { Order, EscrowAccount, CargoPackage } from '@/types';
+import { PackageDetailModal } from '@/components/home/PackageDetailModal';
+import { SendCargoWizardModal } from '@/components/home/SendCargoWizardModal';
 import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
+
 import {
   ShoppingBag,
   Package,
@@ -22,6 +25,7 @@ import {
   Smartphone,
   Save,
   Check,
+  Plus,
 } from 'lucide-react';
 import { useCartStore } from '@/store/useCartStore';
 import { StatCardSkeleton } from '@/components/common/Skeleton';
@@ -31,12 +35,19 @@ export default function BuyerDashboardPage() {
   const { user, setUser, currency, setCurrency, detectedCorridor } = useAuthStore();
   const { addItem } = useCartStore();
 
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('cargo');
   const [orders, setOrders] = useState<Order[]>([]);
   const [escrowVault, setEscrowVault] = useState<EscrowAccount[]>([]);
+  const [cargoPackages, setCargoPackages] = useState<CargoPackage[]>([]);
+  const [selectedCargoPkg, setSelectedCargoPkg] = useState<CargoPackage | null>(null);
+  const [isCargoModalOpen, setIsCargoModalOpen] = useState(false);
+  const [isSendWizardOpen, setIsSendWizardOpen] = useState(false);
+  const [cargoDraft, setCargoDraft] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [escrowPin, setEscrowPin] = useState('');
   const [releasingOrderId, setReleasingOrderId] = useState<string | null>(null);
+
+
 
   // Profile & Preferences Form States
   const [fullName, setFullName] = useState(user?.full_name || 'Grace Mutoni');
@@ -79,12 +90,34 @@ export default function BuyerDashboardPage() {
       setLoading(true);
       const fetchedOrders = await dbService.getOrders();
       const fetchedEscrow = await dbService.getEscrowVault();
+      const fetchedCargo = await dbService.getCargoPackages();
       setOrders(fetchedOrders);
       setEscrowVault(fetchedEscrow);
+      setCargoPackages(fetchedCargo);
       setLoading(false);
+
+      if (typeof window !== 'undefined') {
+        const savedDraft = localStorage.getItem('nile_draft_cargo');
+        const searchParams = new URLSearchParams(window.location.search);
+        const action = searchParams.get('action');
+
+        if (savedDraft) {
+          try {
+            const parsed = JSON.parse(savedDraft);
+            setCargoDraft(parsed);
+            setActiveTab('cargo');
+            setIsSendWizardOpen(true);
+            toast.success(`Loaded homepage calculation for ${parsed.weightKg} KG (${parsed.originCity} ✈ ${parsed.destinationCity})!`);
+          } catch (e) {}
+        } else if (action === 'send_cargo') {
+          setActiveTab('cargo');
+          setIsSendWizardOpen(true);
+        }
+      }
     }
     loadData();
   }, []);
+
 
   const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -128,12 +161,16 @@ export default function BuyerDashboardPage() {
   };
 
   const menuItems = [
+    { id: 'send_cargo', label: 'Send Cargo (Export)', icon: <Plus size={18} /> },
+    { id: 'cargo', label: 'Cargo Packages (Sent & Received)', icon: <Package size={18} /> },
     { id: 'overview', label: 'Overview', icon: <Package size={18} /> },
     { id: 'orders', label: 'My Orders', icon: <ShoppingBag size={18} /> },
     { id: 'wishlist', label: 'My Wishlist', icon: <Heart size={18} /> },
     { id: 'wallet', label: 'Wallet & Escrow', icon: <CreditCard size={18} /> },
     { id: 'preferences', label: 'Profile & Preferences', icon: <Settings size={18} /> },
   ];
+
+
 
   const totalSpentCad = orders.reduce((acc, o) => acc + o.total_cad, 0);
   const activeOrdersCount = orders.filter((o) => o.status !== 'delivered').length;
@@ -145,10 +182,126 @@ export default function BuyerDashboardPage() {
       setActiveTab={setActiveTab}
       menuItems={menuItems}
       title={`Welcome Back, ${user?.full_name?.split(' ')[0] || 'Shopper'}`}
-      subtitle="Manage cross-border orders, 256-bit Escrow Vault releases, wishlist & profile settings."
+      subtitle="Manage cross-border orders, cargo shipments, 256-bit Escrow Vault releases & profile settings."
     >
+      {/* TAB: SEND CARGO (EXPORT) */}
+      {activeTab === 'send_cargo' && (
+        <div className="space-y-6 text-black font-sans">
+          <div className="bg-white border-2 border-black p-8 rounded-3xl space-y-4 shadow-md">
+            <div className="flex items-center space-x-2">
+              <span className="bg-[#014485] text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded font-mono">
+                DASHBOARD CARGO HUB
+              </span>
+              <span className="text-xs font-bold text-gray-600 font-mono">Canada ✈ East Africa Door-to-Door</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black font-retro-heading">
+              Send Air Cargo Package (Export & Courier Assignment)
+            </h2>
+            <p className="text-xs text-gray-600 font-medium max-w-2xl leading-relaxed">
+              Book your export shipment, fill official sender identification (Passport/ID), select items from your marketplace orders or custom goods, upload parcel intake photos, and assign a verified passenger courier flight.
+            </p>
+
+            <div className="pt-2 flex flex-wrap gap-4 font-mono text-xs">
+              <button
+                onClick={() => setIsSendWizardOpen(true)}
+                className="px-6 py-3.5 bg-[#014485] hover:bg-[#013467] text-white font-black uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center space-x-2 cursor-pointer"
+              >
+                <Plus className="w-4 h-4 text-white" />
+                <span>OPEN SEND CARGO BOOKING WIZARD</span>
+              </button>
+
+
+              <button
+                onClick={() => setActiveTab('cargo')}
+                className="px-6 py-3.5 bg-gray-100 hover:bg-gray-200 text-black font-black uppercase tracking-wider rounded-xl transition-all border border-black cursor-pointer"
+              >
+                <span>VIEW MY CARGO PACKAGES ({cargoPackages.length})</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* TAB 0: CARGO PACKAGES (SENT & RECEIVED) */}
+
+      {activeTab === 'cargo' && (
+        <div className="space-y-8 text-black font-sans">
+          <div className="bg-white border-2 border-black p-6 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-md">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-widest bg-black text-white px-3 py-1 rounded font-mono">
+                  SENDER & RECEIVER CARGO HUB
+                </span>
+                <span className="text-xs font-mono font-bold text-gray-600">Export & Import Air Parcels</span>
+              </div>
+              <h2 className="text-2xl font-black font-retro-heading">My Cargo Shipments ({cargoPackages.length})</h2>
+              <p className="text-xs text-gray-600 font-medium">Track packages you sent or incoming parcels addressed to your phone number.</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl border-2 border-black overflow-hidden shadow-sm">
+            <div className="p-4 bg-gray-100 border-b border-black flex justify-between items-center">
+              <h3 className="font-bold text-sm font-retro-heading">Sent & Incoming Parcels List</h3>
+              <span className="text-xs text-gray-600 font-mono">Schema `cargo_packages`</span>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs font-medium">
+                <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-[11px] font-mono">
+
+                  <tr>
+                    <th className="p-4">AWB / Seal Code</th>
+                    <th className="p-4">Sender Details</th>
+                    <th className="p-4">Receiver & Destination</th>
+                    <th className="p-4">Weight</th>
+                    <th className="p-4">Status Stage</th>
+                    <th className="p-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {cargoPackages.map((pkg) => (
+                    <tr key={pkg.id} className="hover:bg-gray-50">
+                      <td className="p-4 font-mono font-bold text-black">
+                        <div>{pkg.awb_number}</div>
+                        <div className="text-[10px] text-gray-500">{pkg.qr_seal_code}</div>
+                      </td>
+                      <td className="p-4">
+                        <div className="font-bold">{pkg.sender.full_name}</div>
+                        <div className="text-[10px] font-mono text-gray-500">{pkg.sender_id_type?.toUpperCase()}: {pkg.sender_id_number}</div>
+                      </td>
+                      <td className="p-4">
+                        <div className="font-bold">{pkg.receiver.full_name} ({pkg.receiver.city})</div>
+                        <div className="text-[10px] font-mono text-gray-500">{pkg.receiver.whatsapp}</div>
+                      </td>
+                      <td className="p-4 font-bold font-mono text-black">{pkg.weight_kg} KG</td>
+                      <td className="p-4">
+                        <span className="bg-black text-white font-bold px-2 py-0.5 text-[10px] rounded font-mono">
+                          {pkg.current_stage}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <button
+                          onClick={() => {
+                            setSelectedCargoPkg(pkg);
+                            setIsCargoModalOpen(true);
+                          }}
+                          className="px-3 py-1 bg-black text-white text-[11px] font-bold rounded hover:bg-gray-800 font-mono"
+                        >
+                          View Details & PIN
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* TAB 1: OVERVIEW */}
       {activeTab === 'overview' && (
+
         <div className="space-y-8">
           {/* Top Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -457,16 +610,18 @@ export default function BuyerDashboardPage() {
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead>
-                  <tr className="border-b border-gray-200 text-gray-400 font-bold uppercase tracking-wider">
-                    <th className="pb-3 font-mono">Transaction ID</th>
-                    <th className="pb-3">Order Number</th>
-                    <th className="pb-3">Amount (CAD)</th>
-                    <th className="pb-3">Amount (RWF)</th>
-                    <th className="pb-3">Escrow Status</th>
-                    <th className="pb-3">Date</th>
+                <thead className="bg-[#014485] text-white font-bold uppercase tracking-wider text-[11px] font-mono">
+
+                  <tr>
+                    <th className="p-3 font-mono">Transaction ID</th>
+                    <th className="p-3">Order Number</th>
+                    <th className="p-3">Amount (CAD)</th>
+                    <th className="p-3">Amount (RWF)</th>
+                    <th className="p-3">Escrow Status</th>
+                    <th className="p-3">Date</th>
                   </tr>
                 </thead>
+
                 <tbody className="divide-y divide-gray-100 font-medium">
                   {escrowVault.length === 0 ? (
                     <tr>
@@ -714,6 +869,42 @@ export default function BuyerDashboardPage() {
           </button>
         </form>
       )}
+
+      {/* Package Detail Modal for Cargo Tracking */}
+      <PackageDetailModal
+        isOpen={isCargoModalOpen}
+        packageData={selectedCargoPkg}
+        onClose={() => setIsCargoModalOpen(false)}
+        onAdvanceStage={async (awb, nextStage) => {
+          const updated = await dbService.updateCargoPackageStage(awb, nextStage);
+          if (updated) {
+            setCargoPackages(cargoPackages.map((p) => (p.awb_number === awb ? { ...updated } : p)));
+            setSelectedCargoPkg({ ...updated });
+          }
+        }}
+      />
+
+      {/* Dedicated Send Cargo Booking Wizard */}
+      <SendCargoWizardModal
+        isOpen={isSendWizardOpen}
+        initialDraft={cargoDraft}
+        onClose={() => {
+          setIsSendWizardOpen(false);
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('nile_draft_cargo');
+          }
+        }}
+        onSuccess={(createdPkg) => {
+          setCargoPackages([createdPkg, ...cargoPackages]);
+          setSelectedCargoPkg(createdPkg);
+          setIsCargoModalOpen(true);
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('nile_draft_cargo');
+          }
+        }}
+      />
     </DashboardLayout>
   );
 }
+
+

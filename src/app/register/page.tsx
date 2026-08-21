@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { User, Mail, Lock, ChevronRight, ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { UserRole } from '@/types';
+import toast from 'react-hot-toast';
+
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -41,7 +43,12 @@ export default function RegisterPage() {
       });
       setIsSubmitting(false);
 
-      if (createdUser.role === 'admin') router.push('/admin');
+      const hasDraft = typeof window !== 'undefined' && localStorage.getItem('nile_draft_cargo');
+
+      if (hasDraft) {
+        toast.success('Account created & confirmed! Loading your saved cargo shipment...');
+        router.push('/buyer?action=send_cargo');
+      } else if (createdUser.role === 'admin') router.push('/admin');
       else if (createdUser.role === 'vendor_rwanda') router.push('/vendor-rwanda');
       else if (createdUser.role === 'vendor_canada') router.push('/vendor-canada');
       else if (createdUser.role === 'logistics_courier') router.push('/logistics');
@@ -51,6 +58,7 @@ export default function RegisterPage() {
       setErrorMessage(err.message || 'Registration failed.');
     }
   };
+
 
   return (
     <main className="h-screen w-full bg-white text-[#111111] font-sans flex flex-col lg:flex-row overflow-hidden relative">
@@ -102,16 +110,17 @@ export default function RegisterPage() {
           <div className="text-center space-y-2">
             <Link href="/" className="inline-block">
               <div className="w-14 h-14 rounded-2xl overflow-hidden border border-gray-200 mx-auto shadow-xs">
-                <img src="/icon.png" alt="Magic Link Logo" className="w-full h-full object-cover" />
+                <img src="/icon.png" alt="Nile Express Cargo Logo" className="w-full h-full object-cover" />
               </div>
             </Link>
             <h1 className="text-3xl lg:text-4xl font-black text-[#111111] font-retro-heading uppercase tracking-tight">
               Create Your Account
             </h1>
             <p className="text-sm text-gray-600 font-medium">
-              Join the official Magic Link cross-border trade network today.
+              Join the official Nile Express Cargo cross-border trade network today.
             </p>
           </div>
+
 
           {errorMessage && (
             <div className="bg-red-50 text-red-700 text-xs font-bold p-3 rounded-xl border border-red-200 text-center">
@@ -229,11 +238,12 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-black hover:bg-gray-800 text-white font-bold py-4 rounded-xl uppercase tracking-widest transition flex items-center justify-center gap-2 text-xs cursor-pointer shadow-md mt-1 disabled:opacity-50"
+              className="w-full bg-[#014485] hover:bg-[#013467] text-white font-bold py-4 rounded-xl uppercase tracking-widest transition flex items-center justify-center gap-2 text-xs cursor-pointer shadow-md mt-1 disabled:opacity-50"
             >
               <span>{isSubmitting ? 'Registering...' : 'REGISTER ACCOUNT'}</span>
               <ChevronRight size={18} />
             </button>
+
           </form>
 
           <div className="pt-3 border-t border-gray-100 text-center text-sm text-gray-600 font-medium">
